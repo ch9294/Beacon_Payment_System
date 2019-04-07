@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "331962744301",
+    "firebase_url": "https://blueb-c4129.firebaseio.com",
+    "project_id": "blueb-c4129",
+    "storage_bucket": "blueb-c4129.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:331962744301:android:3ec8d02ab5bfff61",
+        "android_client_info": {
+          "package_name": "com.capstone.hanzo.bluebsystem"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "331962744301-3m1hb9qpjdagivqsb0jg22ch749ap3t9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.capstone.hanzo.bluebsystem",
+            "certificate_hash": "b173274aa1374ea2bc298b8091f977d7e0326188"
+          }
+        },
+        {
+          "client_id": "331962744301-8ep1ufkrdc4668fe0c57t95bsps5p8o0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDo4Z58AsTvLIm1xXS_SdzmIWm9Oxttxv8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "331962744301-8ep1ufkrdc4668fe0c57t95bsps5p8o0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

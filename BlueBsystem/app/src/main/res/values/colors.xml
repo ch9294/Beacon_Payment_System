@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#ccf1fc </color>
+    <color name="colorPrimaryDark">#000E2B </color>         //hj 상태바 색깔
+    <color name="colorAccent">#D81B60</color>
+
+    <!--hj-->
+    <color name="select">#ccf1fc</color>                    //하단메뉴 선택
+    <color name="bfselect">#013B63</color>                  //하단메뉴 선택 전
+    <!--hj end-->
+</resources>

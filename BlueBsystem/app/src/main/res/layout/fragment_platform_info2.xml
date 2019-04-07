@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                               xmlns:app="http://schemas.android.com/apk/res-auto"
+                                               android:layout_width="match_parent"
+                                               android:layout_height="match_parent"
+                                               android:background="#FFFFFF">
+
+    <ImageView
+            app:layout_widthPercent="15%"
+            app:layout_heightPercent="15%"
+            app:layout_marginLeftPercent="3%"
+            android:src="@drawable/logo_m"
+            android:scaleType="fitXY"/>
+
+    <LinearLayout
+            app:layout_widthPercent="77%"
+            app:layout_heightPercent="13%"
+            app:layout_marginTopPercent="2%"
+            app:layout_marginLeftPercent="20%"
+            android:orientation="vertical">
+        <TextView
+                android:id="@+id/PI_listPlatName2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="정류장 이름"
+                android:textColor="#000E2B"
+                android:textStyle="bold"
+                android:textSize="20dp"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:text="승차 예정인 버스를 선택하세요"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMaxTextSize="17dp"
+                android:autoSizeMinTextSize="12dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/layout_list"
+            app:layout_widthPercent="100%"
+            app:layout_heightPercent="85%"
+            android:background="#00000000"
+            android:layout_alignParentBottom="true">
+        <android.support.v4.widget.SwipeRefreshLayout android:layout_width="match_parent"
+                                                      android:layout_height="match_parent"
+                                                      android:id="@+id/listSwipe">
+            <ListView
+                    android:id="@+id/PI_ListView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"/>
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+    </LinearLayout>
+
+</android.support.percent.PercentRelativeLayout>

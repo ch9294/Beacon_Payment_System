@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context=".PlatformInfoFragment">
+    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent"
+                  android:layout_height="match_parent" android:layout_weight="10">
+        <TextView android:layout_width="match_parent" android:layout_height="match_parent"
+                  android:id="@+id/PI_listPlatName" android:text="정류장 이름" android:gravity="center"
+                  android:textAppearance="@style/TextAppearance.AppCompat.Large" android:textSize="25dp"
+                  android:layout_weight="1"/>
+        <Button android:id="@+id/PI_refreshBtn"
+                android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="7"
+                android:text="새로고침"/>
+    </LinearLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout android:layout_width="match_parent"
+                                                  android:layout_height="match_parent"
+                                                  android:layout_weight="1"
+    android:id="@+id/swipe">
+        <ListView
+                android:id="@+id/PI_ListView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</LinearLayout>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <RelativeLayout
+        android:id="@+id/profileLayout"
+        app:layout_widthPercent="100%"
+        android:layout_height="wrap_content"
+        app:layout_marginTopPercent="12%">
+
+        <ImageView
+            android:id="@+id/profileImg"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/logo_m"
+            android:layout_margin="10dp"
+            android:layout_centerVertical="true"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_toRightOf="@+id/profileImg"
+            android:orientation="vertical"
+            android:layout_margin="10dp">
+
+            <TextView
+                    android:id="@+id/profileNm"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+            />
+            <TextView
+                    android:id="@+id/profileEm"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+            />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/BalLayout"
+        app:layout_widthPercent="100%"
+        android:layout_height="80dp"
+        app:layout_marginPercent="2%"
+        android:orientation="horizontal"
+        android:layout_below="@+id/profileLayout"
+        android:background="@drawable/p_layout_window">
+
+        <TextView
+                android:id="@+id/profileBalT"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:background="#00000000" />
+
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:background="#afafaf"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:text="내 역"
+            android:background="#00000000"/>
+
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:background="#afafaf"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:text="충 전"
+            android:background="#00000000"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnSetAlarm"
+        android:layout_width="match_parent"
+        app:layout_heightPercent="7%"
+        android:text="알  림"
+        android:textColor="#FFFFFF"
+        android:layout_below="@+id/BalLayout"
+        android:background="@drawable/btn_window"
+        app:layout_marginLeftPercent="5%"
+        app:layout_marginRightPercent="5%"
+        app:layout_marginBottomPercent="3%"
+        app:layout_marginTopPercent="2%"/>
+
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="match_parent"
+        app:layout_heightPercent="7%"
+        android:text="로그아웃"
+        android:textColor="#FFFFFF"
+        android:layout_below="@+id/btnSetAlarm"
+        android:background="@drawable/btn_window"
+        app:layout_marginLeftPercent="5%"
+        app:layout_marginRightPercent="5%"/>
+
+</android.support.percent.PercentRelativeLayout>

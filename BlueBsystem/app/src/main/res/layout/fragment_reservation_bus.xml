@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#FFFFFF">
+
+    <ImageView
+        app:layout_widthPercent="15%"
+        app:layout_heightPercent="15%"
+        app:layout_marginLeftPercent="3%"
+        android:src="@drawable/logo_m"
+        android:scaleType="fitXY"/>
+
+    <LinearLayout
+        app:layout_widthPercent="77%"
+        app:layout_heightPercent="13%"
+        app:layout_marginTopPercent="2%"
+        app:layout_marginLeftPercent="20%"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="승차 예약"
+            android:textColor="#000E2B"
+            android:textStyle="bold"
+            android:textSize="20dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:text="승차 예정인 버스를 선택하세요"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMaxTextSize="17dp"
+            android:autoSizeMinTextSize="12dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        app:layout_widthPercent="85%"
+        app:layout_heightPercent="7%"
+        android:layout_centerHorizontal="true"
+        app:layout_marginTopPercent="16%"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <EditText
+            android:id="@+id/RB_searchST"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/searchview_window"
+            android:textColorHint="#000E2B"
+            android:paddingLeft="20dp"
+            android:drawableLeft="@drawable/search_icon_resize"
+            android:drawablePadding="15dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        app:layout_heightPercent="7%"
+        android:orientation="horizontal"
+        android:layout_above="@+id/layout_list">
+
+        <TextView
+            android:id="@+id/RB_numSearch"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="노선번호"/>
+
+        <TextView
+            android:id="@+id/RB_stSearch"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="정류장"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_list"
+        app:layout_widthPercent="100%"
+        app:layout_heightPercent="68%"
+        android:background="@drawable/line_back"
+        android:layout_alignParentBottom="true">
+
+        <ListView
+            android:id="@+id/RB_listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"/>
+    </LinearLayout>
+
+</android.support.percent.PercentRelativeLayout>
