@@ -33,9 +33,9 @@ class LoadingActivity : AppCompatActivity(), AnkoLogger {
     private fun loading() {
         Handler().postDelayed({
             infoInit()
-            startActivity(intentFor<LoginActivity>().clearTop())
+            startActivity(intentFor<MenuActivity>().clearTop())
             finish()
-        }, 500)
+        }, 700)
     }
 
     override fun onBackPressed() {
@@ -47,21 +47,19 @@ class LoadingActivity : AppCompatActivity(), AnkoLogger {
         val cntPlat = database.platformDao().getCount()
 
         if (cntBus == 0) {
-            launch {
-                val request = makeRequest(BusNoList.URL)
-                OkHttpClient().newCall(request).enqueue(BusInitCallback())
-            }
+            queryInfoLaunch(BusNoList.URL)
         }
         if (cntPlat == 0) {
-            launch {
-                val request = makeRequest(PlatformArvlInfoList.URL)
-                OkHttpClient().newCall(request).enqueue(PlatformInitCallback())
-            }
+            queryInfoLaunch(PlatformArvlInfoList.URL)
         }
+    }
 
-        launch {
-            val request = makeRequest(UserInfoList.URL)
-            OkHttpClient().newCall(request).enqueue(UserInitCallback())
+    private fun queryInfoLaunch(url: String) = CoroutineScope(Dispatchers.IO).launch {
+        val request = makeRequest(url)
+        if (url == BusNoList.URL) {
+            OkHttpClient().newCall(request).enqueue(BusInitCallback())
+        } else {
+            OkHttpClient().newCall(request).enqueue(PlatformInitCallback())
         }
     }
 
@@ -95,20 +93,6 @@ class LoadingActivity : AppCompatActivity(), AnkoLogger {
         }
     }
 
-    inner class UserInitCallback : Callback {
-        override fun onFailure(call: Call, e: IOException) {
-            CoroutineScope(Dispatchers.Main).launch {
-                toast("인터넷 연결 실패").show()
-            }
-        }
-
-        override fun onResponse(call: Call, response: Response) {
-            val list = UserInfoList.parseJSON(response)
-            list.forEach {
-                database.userDao().insertUser(it)
-            }
-        }
-    }
 
     override fun onDestroy() {
         InfoDB.destroyInstance()

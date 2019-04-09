@@ -23,29 +23,10 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes>
-      <connection connection-id="6d23d38a-d87a-4694-8723-f4343830ba1a">
-        <schema name="SYSTEM" object-types="view, table" />
-      </connection>
-    </loaded-nodes>
-  </component>
-  <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="6d23d38a-d87a-4694-8723-f4343830ba1a">
-      <console name="BlueB" type="STANDARD" schema="SYSTEM" session="Main"><![CDATA[select user_cash from `GoogleUserInfoTBL` where user_name='최천일']]></console>
-    </connection>
+    <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files />
-  </component>
-  <component name="DBNavigator.Project.DatabaseSessionManager">
-    <connection id="6d23d38a-d87a-4694-8723-f4343830ba1a" />
-  </component>
-  <component name="DBNavigator.Project.DatasetFilterManager">
-    <filter-actions connection-id="6d23d38a-d87a-4694-8723-f4343830ba1a" dataset="SYSTEM.GoogleUserInfoTBL" active-filter-id="21d9f015-5e76-46c2-9675-022e9473d64e">
-      <filter id="21d9f015-5e76-46c2-9675-022e9473d64e" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
-        <condition column="user_email" operator="=" value="" active="true" />
-      </filter>
-    </filter-actions>
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
@@ -69,92 +50,7 @@
     <recently-used-interfaces />
   </component>
   <component name="DBNavigator.Project.Settings">
-    <connections>
-      <connection id="6d23d38a-d87a-4694-8723-f4343830ba1a" active="true">
-        <database>
-          <name value="BlueB" />
-          <description value="캡스톤 디자인 데이터베이스" />
-          <database-type value="MYSQL" />
-          <config-type value="BASIC" />
-          <database-version value="5.5" />
-          <driver-source value="BUILTIN" />
-          <driver-library value="" />
-          <driver value="" />
-          <url-type value="DATABASE" />
-          <host value="localhost" />
-          <port value="3306" />
-          <database value="mysql" />
-          <os-authentication value="false" />
-          <empty-authentication value="false" />
-          <user value="root" />
-          <deprecated-pwd value="NzI2OQ==" />
-        </database>
-        <properties>
-          <auto-commit value="false" />
-        </properties>
-        <ssh-settings>
-          <active value="true" />
-          <proxy-host value="13.125.170.17" />
-          <proxy-port value="22" />
-          <proxy-user value="root" />
-          <deprecated-proxy-pwd value="" />
-          <auth-type value="KEY_PAIR" />
-          <key-file value="$PROJECT_DIR$/../AWS_KEY/Capstone1.pem" />
-          <key-passphrase value="" />
-        </ssh-settings>
-        <ssl-settings>
-          <active value="false" />
-          <certificate-authority-file value="" />
-          <client-certificate-file value="" />
-          <client-key-file value="" />
-        </ssl-settings>
-        <details>
-          <charset value="UTF-8" />
-          <session-management value="true" />
-          <ddl-file-binding value="true" />
-          <database-logging value="false" />
-          <connect-automatically value="true" />
-          <restore-workspace value="true" />
-          <restore-workspace-deep value="true" />
-          <environment-type value="default" />
-          <idle-time-to-disconnect value="30" />
-          <idle-time-to-disconnect-pool value="5" />
-          <credential-expiry-time value="10" />
-          <max-connection-pool-size value="7" />
-          <alternative-statement-delimiter value="" />
-        </details>
-        <object-filters hide-empty-schemas="false">
-          <object-type-filter use-master-settings="true">
-            <object-type name="SCHEMA" enabled="true" />
-            <object-type name="USER" enabled="true" />
-            <object-type name="ROLE" enabled="true" />
-            <object-type name="PRIVILEGE" enabled="true" />
-            <object-type name="CHARSET" enabled="true" />
-            <object-type name="TABLE" enabled="true" />
-            <object-type name="VIEW" enabled="true" />
-            <object-type name="MATERIALIZED_VIEW" enabled="true" />
-            <object-type name="NESTED_TABLE" enabled="true" />
-            <object-type name="COLUMN" enabled="true" />
-            <object-type name="INDEX" enabled="true" />
-            <object-type name="CONSTRAINT" enabled="true" />
-            <object-type name="DATASET_TRIGGER" enabled="true" />
-            <object-type name="DATABASE_TRIGGER" enabled="true" />
-            <object-type name="SYNONYM" enabled="true" />
-            <object-type name="SEQUENCE" enabled="true" />
-            <object-type name="PROCEDURE" enabled="true" />
-            <object-type name="FUNCTION" enabled="true" />
-            <object-type name="PACKAGE" enabled="true" />
-            <object-type name="TYPE" enabled="true" />
-            <object-type name="TYPE_ATTRIBUTE" enabled="true" />
-            <object-type name="ARGUMENT" enabled="true" />
-            <object-type name="DIMENSION" enabled="true" />
-            <object-type name="CLUSTER" enabled="true" />
-            <object-type name="DBLINK" enabled="true" />
-          </object-type-filter>
-          <object-name-filters />
-        </object-filters>
-      </connection>
-    </connections>
+    <connections />
     <browser-settings>
       <general>
         <display-mode value="TABBED" />

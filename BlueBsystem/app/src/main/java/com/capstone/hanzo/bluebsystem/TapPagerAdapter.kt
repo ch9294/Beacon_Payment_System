@@ -10,9 +10,9 @@ class TapPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
 
     init {
         fragments.apply {
+            add(UserManagementFragment())
             add(ReservationBusFragment())
             add(PaymentManagementFragment())
-            add(UserManagementFragment())
         }
     }
 

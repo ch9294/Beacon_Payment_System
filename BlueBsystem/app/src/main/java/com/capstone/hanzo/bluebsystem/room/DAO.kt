@@ -17,6 +17,9 @@ interface BusDao {
     @Query("select * from bus")
     fun getAll(): List<BusNoList>
 
+    @Query("select * from bus where uuid = :uuid")
+    fun checkUUID(uuid: String): BusNoList
+
     @Query("delete from bus")
     fun deleteBusAll()
 
@@ -39,15 +42,15 @@ interface PlatformDao {
     fun insert(platform: PlatformArvlInfoList)
 }
 
-@Dao
-interface UserDao{
-    @Query("select * from user")
-    fun getAll():List<UserInfoList>
-
-    @Query("delete from user")
-    fun deleteAll()
-
-    // 앱이 로딩화면을 거칠때마다 외부로부터 새로운 정보를 받아온다
-    @Insert(onConflict = REPLACE)
-    fun insertUser(user:UserInfoList)
-}
+//@Dao
+//interface UserDao{
+//    @Query("select * from user")
+//    fun getAll():List<UserInfoList>
+//
+//    @Query("delete from user")
+//    fun deleteAll()
+//
+//    // 앱이 로딩화면을 거칠때마다 외부로부터 새로운 정보를 받아온다
+//    @Insert(onConflict = REPLACE)
+//    fun insertUser(user:UserInfoList)
+//}

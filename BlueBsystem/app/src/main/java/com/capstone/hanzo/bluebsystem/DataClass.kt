@@ -55,18 +55,16 @@ data class PlatformArvlInfoList(val platId: String, val platNo: String, val plat
 // 선택한 정류장의 도착정보 리스트
 data class PlatformArvlInfoList2(val number: String, val time: String, val type: String)
 
-// 사용자의 정보 리스트
-@Entity(tableName = "user",primaryKeys = ["userCash"])
+// 사용자의 정보 리스트 TODO : 기본키 설정을 위해 이메일을 넣을까 말까 고민해보자...
+//@Entity(tableName = "user",primaryKeys = ["userCash"])
 data class UserInfoList(
     val userCash: String,
-    val userBook: String,
     val userTrans: String,
     val userGetOffTime: String?,
     val userIn: String,
     val userLastBusNo: String?) {
-
-    @Ignore
-    constructor():this("","","","","","")
+//    @Ignore
+//    constructor():this("","","","","")
 
     companion object {
         const val URL = "http://13.125.170.17/googleUserInfoSelect.php"

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="694ef3e7-dca3-4043-b784-f08da43d5ddc" name="Capstone" url="http://13.125.170.17">
+        <fileTransfer host="13.125.170.17" port="22" privateKey="$PROJECT_DIR$/../../AWS_KEY/Capstone1.pem" rootFolder="/var/www/html" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

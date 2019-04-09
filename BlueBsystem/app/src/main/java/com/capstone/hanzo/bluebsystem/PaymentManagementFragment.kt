@@ -37,7 +37,7 @@ private const val ARG_PARAM2 = "param2"
  * A simple [Fragment] subclass.
  *
  */
-class PaymentManagementFragment : Fragment(){
+class PaymentManagementFragment : Fragment() {
 
     private lateinit var btnCharge: Button
     private lateinit var editExpense: EditText
@@ -56,6 +56,7 @@ class PaymentManagementFragment : Fragment(){
 
         return view
     }
+
     inner class TextChangedListener : TextWatcher {
         private fun <T> check(string: T) {
 

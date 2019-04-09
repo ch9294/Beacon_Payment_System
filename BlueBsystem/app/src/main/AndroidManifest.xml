@@ -10,6 +10,9 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
     <uses-permission android:name="android.permission.BLUETOOTH"/>
 
+    <!--위치 권한-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
     <!--진동 권한-->
     <uses-permission android:name="android.permission.VIBRATE"/>
 
