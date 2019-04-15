@@ -111,7 +111,6 @@ class ReservationBusFragment : Fragment(), AnkoLogger {
                     onItemClickListener = object : AdapterView.OnItemClickListener {
                         override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                             val v = parent?.getItemAtPosition(position) as BusNoList
-
                         }
                     }
                 }

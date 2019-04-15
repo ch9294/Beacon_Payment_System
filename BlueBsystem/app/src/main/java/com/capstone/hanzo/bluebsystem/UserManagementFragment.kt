@@ -94,7 +94,7 @@ class UserManagementFragment : Fragment(), AnkoLogger {
             stop = true
             rangingJob?.let {
                 controller.run {
-                    beaconManager.stopRangingBeaconsInRegion(Region("blueb",null,null,null))
+                    beaconManager.stopRangingBeaconsInRegion(Region("blueb", null, null, null))
                     sharedLastBusNumber = null
                     inFlag = false
                     transFlag = false
@@ -111,16 +111,11 @@ class UserManagementFragment : Fragment(), AnkoLogger {
         val context = activity as MenuActivity
         override fun getApplicationContext(): Context = context
 
-        override fun unbindService(p0: ServiceConnection?) {
-            context.unbindService(p0)
-        }
+        override fun unbindService(p0: ServiceConnection?) { context.unbindService(p0) }
 
-        override fun bindService(p0: Intent?, p1: ServiceConnection?, p2: Int): Boolean =
-            context.bindService(p0, p1, p2)
+        override fun bindService(p0: Intent?, p1: ServiceConnection?, p2: Int): Boolean = context.bindService(p0, p1, p2)
 
-        override fun onBeaconServiceConnect() {
-            rangingJob = startRangingBeacon()
-        }
+        override fun onBeaconServiceConnect() { rangingJob = startRangingBeacon() }
     }
 
     /**
@@ -132,10 +127,12 @@ class UserManagementFragment : Fragment(), AnkoLogger {
         Log.d(TAG, "비콘 감지를 시작합니다")
         var cnt = 0
         stop = false
+
         (activity as MenuActivity).run {
             beaconManager.run {
                 try {
-                    if(!stop) {
+                    if (!stop) {
+                        Log.d(TAG, "서비스를 종료합니다")
                         startRangingBeaconsInRegion(Region("blueb", null, null, null))
                     }
                 } catch (e: Exception) {
@@ -207,12 +204,8 @@ class UserManagementFragment : Fragment(), AnkoLogger {
             Log.d(TAG, "승차 루틴을 시작합니다.")
             (activity as MenuActivity).run {
                 when (transFlag) {
-                    true -> {
-                        ifTransfer(bus)
-                    }
-                    false -> {
-                        ifNotTransfer(bus)
-                    }
+                    true -> { ifTransfer(bus) }
+                    false -> { ifNotTransfer(bus) }
                 }
                 Log.d(TAG, "승차 처리가 완료되었습니다.")
 
@@ -228,6 +221,16 @@ class UserManagementFragment : Fragment(), AnkoLogger {
                 inFlag = true
                 transFlag = true
                 paymentFlag = true
+
+                Log.d(
+                    TAG, """
+                    버스 번호 : $sharedLastBusNumber
+                    탑승 여부 : ${if (inFlag) "탑승" else "미탑승"}
+                    환승 여부 : ${if (transFlag) "환승" else "환승아님"}
+                    결제 여부 : ${if (paymentFlag) "결제" else "미결제"}
+                """.trimIndent()
+                )
+
             }
         }
 
@@ -264,13 +267,10 @@ class UserManagementFragment : Fragment(), AnkoLogger {
 
         when ((activity as MenuActivity).sharedLastBusNumber?.contains("급행")) {
             // 마지막으로 탄 버스가 급행일 때
-            true -> {
-                Log.d(TAG, "차액을 지불하지 않아도 됩니다.")
-            }
+            true -> { Log.d(TAG, "차액을 지불하지 않아도 됩니다.") }
             // 마지막으로 탄 버스가 일반일 때
-            false -> {
-                ifNotNormalBus(bus)
-            }
+            false -> { ifNotNormalBus(bus) }
+
             else -> {
             }
         }
