@@ -25,30 +25,27 @@ if (!$link) {
 mysqli_set_charset($link, "utf8");
 
 $email = $_POST['user_email'];
-$balance_account = $_POST['balance_account'];
-$busNumber = $_POST['busNumber'];
+$in;
+$trans;
+$bus = $_POST['last_bus_no'];
 
-// 쿼리문 작성
-$selectSql = "select * from GoogleUserInfoTBL where user_email = $email";
-
-// 쿼리 실행
-$result = mysqli_query($link, $selectSql);
-
-$row1;
-if ($result) {
-    $row1 = mysqli_fetch_array($result);
+if ($_POST['user_in'] === 'true') {
+    $in = boolval("1");
 } else {
-    echo "failed";
+    $in = boolval("0");
 }
 
-// 잔액 계산
-$cash = (int)$row1['user_cash'] - (int)$balance_account;
-
-$updateSql = "update GoogleUserInfoTBL set user_cash='$cash',user_book=true,user_transfer=true ,last_bus_no='$busNumber'";
-$updateResult = mysqli_query($link,$updateSql);
-
-if($updateResult){
-    echo "SUCCESS";
-}else{
-    echo "FAILED";
+if ($_POST['user_transfer'] === "true") {
+    $trans = boolval("1");
+} else {
+    $trans = boolval("0");
 }
+
+$updateSql = "update GoogleUserInfoTBL set user_in = $in,user_transfer=$trans ,last_bus_no='$bus' where user_email = '$email'";
+$updateResult = mysqli_query($link, $updateSql);
+
+//if ($updateResult) {
+//    echo "SUCCESS";
+//} else {
+//    echo "FAILED";
+//}

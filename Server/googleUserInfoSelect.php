@@ -30,7 +30,7 @@ mysqli_set_charset($link, "utf8");
 
 $email = $_POST['user_email'];
 // 쿼리문 작성
-$sql = "select user_cash,user_book,user_transfer,user_getoff_time,user_in,last_bus_no from GoogleUserInfoTBL where user_email = '$email'";
+$sql = "select user_cash,user_transfer,user_getoff_time,user_in,last_bus_no from GoogleUserInfoTBL where user_email = '$email'";
 
 // 쿼리 실행
 $result = mysqli_query($link, $sql);
@@ -41,7 +41,6 @@ if ($result) {
     while ($row = mysqli_fetch_array($result)) {
         array_push($dataArray, array(
             "userCash" => $row['user_cash'],
-            "userBook" => $row['user_book'],
             "userTrans" => $row['user_transfer'],
             "userGetOffTime" => $row['user_getoff_time'],
             "userIn" => $row['user_in'],
