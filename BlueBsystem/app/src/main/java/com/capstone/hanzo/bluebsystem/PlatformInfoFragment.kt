@@ -55,7 +55,7 @@ class PlatformInfoFragment : Fragment(), AnkoLogger, SwipeRefreshLayout.OnRefres
         val view = inflater
             .inflate(R.layout.fragment_platform_info2, container, false)
             .apply {
-                PI_ListView = find(R.id.PI_ListView2)
+                PI_ListView = this.find(R.id.PI_ListView2)
                 PI_listPlatName = find(R.id.PI_listPlatName2)
                 PI_swipe = find(R.id.listSwipe)
             }
