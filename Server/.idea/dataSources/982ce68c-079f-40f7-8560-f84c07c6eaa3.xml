@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="@localhost">
-  <database-model serializer="dbm" dbms="MARIADB" family-id="MARIADB" format-version="4.14">
+  <database-model serializer="dbm" dbms="MARIADB" family-id="MARIADB" format-version="4.15">
     <root id="1">
       <ServerVersion>10.1.38</ServerVersion>
-      <Dbms>MARIADB</Dbms>
       <DefaultEngine>InnoDB</DefaultEngine>
       <DefaultCasing>exact</DefaultCasing>
     </root>
@@ -1060,125 +1059,130 @@
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="266" parent="245" name="PRIMARY">
+    <column id="266" parent="245" name="server_addr">
+      <Position>7</Position>
+      <DataType>varchar(30)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="267" parent="245" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>bus_id
 bus_num</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="267" parent="246" name="user_email">
+    <column id="268" parent="246" name="user_email">
       <Position>1</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="268" parent="246" name="user_name">
+    <column id="269" parent="246" name="user_name">
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="269" parent="246" name="user_cash">
+    <column id="270" parent="246" name="user_cash">
       <Position>3</Position>
       <DataType>int(30)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>0</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="270" parent="246" name="user_transfer">
+    <column id="271" parent="246" name="user_transfer">
       <Position>4</Position>
       <DataType>tinyint(1)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>0</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="271" parent="246" name="user_getoff_time">
+    <column id="272" parent="246" name="user_getoff_time">
       <Position>5</Position>
-      <DataType>datetime|0s</DataType>
+      <DataType>varchar(50)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="272" parent="246" name="user_in">
+    <column id="273" parent="246" name="user_in">
       <Position>6</Position>
       <DataType>tinyint(1)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>0</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="273" parent="246" name="last_bus_no">
+    <column id="274" parent="246" name="last_bus_no">
       <Position>7</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="274" parent="246" name="PRIMARY">
+    <key id="275" parent="246" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>user_email</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="275" parent="247" name="platform_name">
+    <column id="276" parent="247" name="platform_name">
       <Position>1</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="276" parent="247" name="platform_id">
+    <column id="277" parent="247" name="platform_id">
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="277" parent="247" name="platform_num">
+    <column id="278" parent="247" name="platform_num">
       <Position>3</Position>
       <DataType>varchar(10)|0s</DataType>
       <DefaultExpression>&apos;no_search&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="278" parent="247" name="PRIMARY">
+    <key id="279" parent="247" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>platform_id
 platform_name</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="279" parent="248" name="user_id">
+    <column id="280" parent="248" name="user_id">
       <Position>1</Position>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="280" parent="248" name="user_pw">
+    <column id="281" parent="248" name="user_pw">
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="281" parent="248" name="user_name">
+    <column id="282" parent="248" name="user_name">
       <Position>3</Position>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="282" parent="248" name="user_age">
+    <column id="283" parent="248" name="user_age">
       <Position>4</Position>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="283" parent="248" name="user_sex">
+    <column id="284" parent="248" name="user_sex">
       <Position>5</Position>
       <DataType>varchar(10)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="284" parent="248" name="user_cash">
+    <column id="285" parent="248" name="user_cash">
       <Position>6</Position>
       <DataType>int(20)|0s</DataType>
       <DefaultExpression>0</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="285" parent="248" name="PRIMARY">
+    <key id="286" parent="248" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>user_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="286" parent="249" name="user_name">
+    <column id="287" parent="249" name="user_name">
       <Position>1</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>

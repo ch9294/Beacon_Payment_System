@@ -2,8 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0e4d481f-d1ad-48a5-a20b-3e5d810ad3b7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../BlueBsystem/app/src/main/java/com/capstone/hanzo/bluebsystem/NotificationSet.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/googleUserDateTimeUpdate.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../BlueBsystem/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BlueBsystem/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/googleUserInfoSelect.php" beforeDir="false" afterPath="$PROJECT_DIR$/googleUserInfoSelect.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlueBsystem/app/src/main/java/com/capstone/hanzo/bluebsystem/CustomAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BlueBsystem/app/src/main/java/com/capstone/hanzo/bluebsystem/CustomAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlueBsystem/app/src/main/java/com/capstone/hanzo/bluebsystem/DataClass.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BlueBsystem/app/src/main/java/com/capstone/hanzo/bluebsystem/DataClass.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlueBsystem/app/src/main/java/com/capstone/hanzo/bluebsystem/LoadingActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BlueBsystem/app/src/main/java/com/capstone/hanzo/bluebsystem/LoadingActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlueBsystem/app/src/main/java/com/capstone/hanzo/bluebsystem/LoginActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BlueBsystem/app/src/main/java/com/capstone/hanzo/bluebsystem/LoginActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlueBsystem/app/src/main/java/com/capstone/hanzo/bluebsystem/MenuActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BlueBsystem/app/src/main/java/com/capstone/hanzo/bluebsystem/MenuActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlueBsystem/app/src/main/java/com/capstone/hanzo/bluebsystem/PlatformInfoFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BlueBsystem/app/src/main/java/com/capstone/hanzo/bluebsystem/PlatformInfoFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlueBsystem/app/src/main/java/com/capstone/hanzo/bluebsystem/ReservationBusFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BlueBsystem/app/src/main/java/com/capstone/hanzo/bluebsystem/ReservationBusFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlueBsystem/app/src/main/java/com/capstone/hanzo/bluebsystem/TapPagerAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BlueBsystem/app/src/main/java/com/capstone/hanzo/bluebsystem/TapPagerAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlueBsystem/app/src/main/java/com/capstone/hanzo/bluebsystem/UserManagementFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BlueBsystem/app/src/main/java/com/capstone/hanzo/bluebsystem/UserManagementFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlueBsystem/app/src/main/java/com/capstone/hanzo/bluebsystem/room/Database.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BlueBsystem/app/src/main/java/com/capstone/hanzo/bluebsystem/room/Database.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlueBsystem/app/src/main/res/layout/fragment_reservation_bus.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BlueBsystem/app/src/main/res/layout/fragment_reservation_bus.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlueBsystem/app/src/main/res/layout/fragment_user_management.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BlueBsystem/app/src/main/res/layout/fragment_user_management.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlueBsystem/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BlueBsystem/app/src/main/res/values/styles.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/982ce68c-079f-40f7-8560-f84c07c6eaa3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/982ce68c-079f-40f7-8560-f84c07c6eaa3.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/userBookingStateRenewal.php" beforeDir="false" afterPath="$PROJECT_DIR$/userBookingStateRenewal.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -37,14 +54,21 @@
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
         <item name="@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="SYSTEM: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="SYSTEM: schema" type="ebfa3cd1:MariaImplModel$Schema" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
         <item name="@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="SYSTEM: schema" type="76f4a085:MysqlImplModel$Schema" />
-        <item name="GoogleUserInfoTBL: table" type="285a2a93:MysqlImplModel$Table" />
+        <item name="SYSTEM: schema" type="ebfa3cd1:MariaImplModel$Schema" />
+        <item name="BusInfoTBL: table" type="dbc44a63:MariaImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="SYSTEM: schema" type="ebfa3cd1:MariaImplModel$Schema" />
+        <item name="PlatFormTBL: table" type="dbc44a63:MariaImplModel$Table" />
       </path>
     </expand>
     <select />
@@ -54,17 +78,53 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/googleUserInfoSelect.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+            <state relative-caret-position="462">
+              <caret line="26" selection-start-line="26" selection-end-line="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/googleUserInsert.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="428">
+              <caret line="32" selection-start-line="32" selection-end-line="32" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/platformInfoSearch.php">
+        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/982ce68c-079f-40f7-8560-f84c07c6eaa3/console.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-439" />
+            <state relative-caret-position="176">
+              <caret line="8" column="88" lean-forward="true" selection-start-line="8" selection-start-column="88" selection-end-line="8" selection-end-column="88" />
+            </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="das://982ce68c-079f-40f7-8560-f84c07c6eaa3/schema/SYSTEM/table/BusInfoTBL">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true">
+                <filter text="" />
+              </filtering>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/googleUserDateTimeUpdate.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="20" column="3" lean-forward="true" selection-start-line="20" selection-start-column="3" selection-end-line="20" selection-end-column="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/platformInfoSearch.php">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -77,42 +137,20 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="das://982ce68c-079f-40f7-8560-f84c07c6eaa3/schema/SYSTEM/table/GoogleUserInfoTBL">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/userBookingStateRenewal.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="834">
-              <caret line="43" column="47" selection-start-line="43" selection-start-column="47" selection-end-line="43" selection-end-column="47" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CashRecharge.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="609">
-              <caret line="48" column="46" selection-start-line="48" selection-start-column="46" selection-end-line="48" selection-end-column="46" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/982ce68c-079f-40f7-8560-f84c07c6eaa3/console.sql">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="4" column="68" selection-start-line="4" selection-start-column="68" selection-end-line="4" selection-end-column="68" />
+            <state relative-caret-position="770">
+              <caret line="40" column="10" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="10" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>405</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -121,8 +159,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/googleUserInfoSelect.php" />
-        <option value="$PROJECT_DIR$/userBookingStateRenewal.php" />
+        <option value="$PROJECT_DIR$/googleUserDateTimeUpdate.php" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
+        <option value="$PROJECT_DIR$/userBookingStateRenewal.php" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/982ce68c-079f-40f7-8560-f84c07c6eaa3/console.sql" />
       </list>
     </option>
@@ -158,6 +197,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mariadb" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
@@ -166,6 +206,9 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="database.console.LAST_STATE" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
@@ -196,14 +239,21 @@
       <workItem from="1554796384033" duration="1562000" />
       <workItem from="1554820357936" duration="2197000" />
       <workItem from="1554871830510" duration="751000" />
+      <workItem from="1555995748649" duration="3940000" />
+      <workItem from="1556689919745" duration="399000" />
+      <workItem from="1556694125451" duration="188000" />
+      <workItem from="1556707144279" duration="1098000" />
+      <workItem from="1557119413360" duration="3172000" />
+      <workItem from="1557137040870" duration="363000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5320000" />
+    <option name="totallyTimeSpent" value="14480000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="1" side_tool="true" />
@@ -225,7 +275,7 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Remote Host" order="3" weight="0.3297568" />
-      <window_info anchor="right" id="Database" order="4" visible="true" weight="0.3297568" />
+      <window_info anchor="right" id="Database" order="4" visible="true" weight="0.2067239" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -235,26 +285,47 @@
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/ebaee630-e281-424c-b642-023ee50df603/console.sql">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="das://982ce68c-079f-40f7-8560-f84c07c6eaa3/schema/SYSTEM/table/GoogleUserInfoTBL">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
+    <entry file="file://$PROJECT_DIR$/CashRecharge.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="551">
+          <caret line="48" column="46" selection-start-line="48" selection-start-column="46" selection-end-line="48" selection-end-column="46" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/982ce68c-079f-40f7-8560-f84c07c6eaa3/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="68" selection-start-line="4" selection-start-column="68" selection-end-line="4" selection-end-column="68" />
+    <entry file="das://982ce68c-079f-40f7-8560-f84c07c6eaa3/schema/SYSTEM/table/GoogleUserInfoTBL">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true">
+            <filter text="" />
+          </filtering>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/googleUserInfoSelect.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+        <state relative-caret-position="462">
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
         </state>
       </provider>
+    </entry>
+    <entry file="das://982ce68c-079f-40f7-8560-f84c07c6eaa3/schema/SYSTEM/table/BusInfoTBL">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true">
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/googleUserDateTimeUpdate.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="20" column="3" lean-forward="true" selection-start-line="20" selection-start-column="3" selection-end-line="20" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/platformInfoSearch.php">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/googleUserSelect.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -265,21 +336,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/userBookingStateRenewal.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="834">
-          <caret line="43" column="47" selection-start-line="43" selection-start-column="47" selection-end-line="43" selection-end-column="47" />
+        <state relative-caret-position="770">
+          <caret line="40" column="10" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CashRecharge.php">
+    <entry file="file://$PROJECT_DIR$/googleUserInsert.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="609">
-          <caret line="48" column="46" selection-start-line="48" selection-start-column="46" selection-end-line="48" selection-end-column="46" />
+        <state relative-caret-position="428">
+          <caret line="32" selection-start-line="32" selection-end-line="32" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/platformInfoSearch.php">
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/982ce68c-079f-40f7-8560-f84c07c6eaa3/console.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-439" />
+        <state relative-caret-position="176">
+          <caret line="8" column="88" lean-forward="true" selection-start-line="8" selection-start-column="88" selection-end-line="8" selection-end-column="88" />
+        </state>
       </provider>
     </entry>
   </component>

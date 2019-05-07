@@ -24,24 +24,26 @@ if (!$link) {
 // 유니코드 설정
 mysqli_set_charset($link, "utf8");
 
-$email = $_POST['user_email'];
-$in;
-$trans;
-$bus = $_POST['last_bus_no'];
+$email = $_POST['user_email']; // 사용자 이메일
+$in = boolval($_POST['user_in']); // 사용자의 탑승 여부
+$trans = boolval($_POST['user_transfer']); // 사용자의 환승 여부
+$bus = $_POST['last_bus_no']; // 직전 혹은 현재 탑승 중인 버스 번호
 
-if ($_POST['user_in'] === 'true') {
-    $in = boolval("1");
-} else {
-    $in = boolval("0");
-}
 
-if ($_POST['user_transfer'] === "true") {
-    $trans = boolval("1");
-} else {
-    $trans = boolval("0");
-}
+//if ($_POST['user_in'] == 'true') {
+//    $in = boolval("1");
+//} else {
+//    $in = boolval("0");
+//}
+//
+//if ($_POST['user_transfer'] == "true") {
+//    $trans = boolval("1");
+//} else {
+//    $trans = boolval("0");
+//}
 
-$updateSql = "update GoogleUserInfoTBL set user_in = $in,user_transfer=$trans ,last_bus_no='$bus' where user_email = '$email'";
+// 사용자 정보 테이블의 내용을 수정하는 쿼리
+$updateSql = "update GoogleUserInfoTBL set user_in = '$in',user_transfer='$trans' ,last_bus_no='$bus' where user_email = '$email'";
 $updateResult = mysqli_query($link, $updateSql);
 
 //if ($updateResult) {

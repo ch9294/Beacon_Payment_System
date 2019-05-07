@@ -3,7 +3,6 @@ package com.capstone.hanzo.bluebsystem
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.Window
 import com.capstone.hanzo.bluebsystem.room.InfoDB
 import kotlinx.coroutines.CoroutineScope
@@ -33,25 +32,26 @@ class LoadingActivity : AppCompatActivity(), AnkoLogger {
     private fun loading() {
         Handler().postDelayed({
             infoInit()
-            startActivity(intentFor<MenuActivity>().clearTop())
+            startActivity(intentFor<LoginActivity>())
             finish()
         }, 700)
     }
 
     override fun onBackPressed() {
-        TODO("로딩 화면에서는 뒤로가기 버튼의 작동을 막는다.")
+
     }
 
-    private fun infoInit() = GlobalScope.launch {
+    private fun infoInit() = CoroutineScope(Dispatchers.IO).launch {
         val cntBus = database.busDao().getCount()
         val cntPlat = database.platformDao().getCount()
-
-        if (cntBus == 0) {
-            queryInfoLaunch(BusNoList.URL)
-        }
-        if (cntPlat == 0) {
-            queryInfoLaunch(PlatformArvlInfoList.URL)
-        }
+        queryInfoLaunch(BusNoList.URL)
+        queryInfoLaunch(PlatformArvlInfoList.URL)
+//        if (cntBus == 0) {
+//            queryInfoLaunch(BusNoList.URL)
+//        }
+//        if (cntPlat == 0) {
+//            queryInfoLaunch(PlatformArvlInfoList.URL)
+//        }
     }
 
     private fun queryInfoLaunch(url: String) = CoroutineScope(Dispatchers.IO).launch {

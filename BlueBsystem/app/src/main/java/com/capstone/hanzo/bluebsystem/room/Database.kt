@@ -9,13 +9,10 @@ import com.capstone.hanzo.bluebsystem.PlatformArvlInfoList
 import com.capstone.hanzo.bluebsystem.UserInfoList
 
 
-// TODO : Room의 데이터베이스 객체 작성해야함 (2019.04.04 진행중...)
-
 @Database(entities = [BusNoList::class, PlatformArvlInfoList::class], version = 4)
 abstract class InfoDB : RoomDatabase() {
     abstract fun busDao(): BusDao
     abstract fun platformDao(): PlatformDao
-//    abstract fun userDao(): UserDao
 
     companion object {
         private var INSTANCE: InfoDB? = null

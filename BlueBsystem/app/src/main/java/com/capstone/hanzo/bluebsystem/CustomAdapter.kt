@@ -21,33 +21,27 @@ class PlatformListAdapter() : BaseAdapter(), Filterable {
     private lateinit var name: TextView
     private var listFilter: Filter? = null
 
-    override fun getCount(): Int {
-        return filteredItemList.size
-    }
+    override fun getCount() = filteredItemList.size
 
-    override fun getItem(position: Int): Any {
-        return filteredItemList[position]
-    }
+    override fun getItem(position: Int) = filteredItemList[position]
 
-    override fun getItemId(position: Int): Long {
-        return position.toLong()
-    }
+    override fun getItemId(position: Int) = position.toLong()
+
+    fun addItem(list: List<PlatformArvlInfoList>) = itemList.addAll(list)
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         var view = convertView
         val context = parent?.context
+        val item = filteredItemList[position]
 
-        if (view == null) {
-            view = context?.layoutInflater?.inflate(R.layout.list_platform_reservation, parent, false)
-        }
+        if (view == null) view = context?.layoutInflater?.inflate(R.layout.list_platform_reservation, parent, false)
+
 
         view?.let {
             id = it.find(R.id.listPlatId)
             number = it.find(R.id.listPlatNo)
             name = it.find(R.id.listPlatName)
         }
-
-        val item = filteredItemList[position]
 
         id.text = item.platId
         number.text = item.platNo
@@ -56,34 +50,21 @@ class PlatformListAdapter() : BaseAdapter(), Filterable {
         return view!!
     }
 
-    fun addItem(list:List<PlatformArvlInfoList>) {
-        itemList.addAll(list)
-    }
-
-    override fun getFilter(): Filter {
-        if (listFilter == null) {
-            listFilter = ListFilter()
-        }
-        return listFilter!!
-    }
+    override fun getFilter() = listFilter.takeIf { it == null }?.apply { ListFilter() } ?: ListFilter()
 
     private inner class ListFilter : Filter() {
         override fun performFiltering(constraint: CharSequence?): FilterResults {
             val result = FilterResults()
 
-            if (constraint == null || constraint.isEmpty()) {
+            if (constraint.isNullOrEmpty()) {
                 result.values = itemList
                 result.count = itemList.size
             } else {
                 val itemList2 = ArrayList<PlatformArvlInfoList>()
 
-                for (item in itemList) {
-                    if (item.platName.toUpperCase().contains(constraint.toString().toUpperCase()) || item.platNo.toUpperCase().contains(
-                            constraint.toString().toUpperCase()
-                        )
-                    ) {
-                        itemList2.add(item)
-                    }
+                itemList.forEach {
+                    if (constraint.toString().toUpperCase() in it.platName.toUpperCase() || constraint.toString().toUpperCase() in it.platNo.toUpperCase())
+                        itemList2.add(it)
                 }
                 result.values = itemList2
                 result.count = itemList2.size
@@ -93,12 +74,7 @@ class PlatformListAdapter() : BaseAdapter(), Filterable {
 
         override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
             filteredItemList = results?.values as ArrayList<PlatformArvlInfoList>
-
-            if (results.count > 0) {
-                notifyDataSetChanged()
-            } else {
-                notifyDataSetInvalidated()
-            }
+            if (results.count > 0) notifyDataSetChanged() else notifyDataSetInvalidated()
         }
     }
 }
@@ -114,33 +90,26 @@ class NumberListAdapter : BaseAdapter(), Filterable {
     private lateinit var end: TextView
     private var listFilter: Filter? = null
 
-    override fun getCount(): Int {
-        return filteredItemList.size
-    }
+    override fun getCount() = filteredItemList.size
 
-    override fun getItem(position: Int): Any {
-        return filteredItemList[position]
-    }
+    override fun getItem(position: Int) = filteredItemList[position]
 
-    override fun getItemId(position: Int): Long {
-        return position.toLong()
-    }
+    override fun getItemId(position: Int) = position.toLong()
+
+    fun addItem(list: List<BusNoList>) = itemList.addAll(list)
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         var view = convertView
         val context = parent?.context
 
-        if (view == null) {
-            view = context?.layoutInflater?.inflate(R.layout.list_bus_reservation, parent, false)
-        }
+        if (view == null) view = context?.layoutInflater?.inflate(R.layout.list_bus_reservation, parent, false)
 
         view?.let {
-            with(it) {
-                number = find(R.id.listBusNum)
-                start = find(R.id.listBusStart)
-                end = find(R.id.listBusEnd)
-            }
+            number = it.find(R.id.listBusNum)
+            start = it.find(R.id.listBusStart)
+            end = it.find(R.id.listBusEnd)
         }
+
         number.text = filteredItemList[position].busNo
         start.text = filteredItemList[position].start
         end.text = filteredItemList[position].end
@@ -148,31 +117,19 @@ class NumberListAdapter : BaseAdapter(), Filterable {
         return view!!
     }
 
-    fun addItem(list:List<BusNoList>) {
-        itemList.addAll(list)
-    }
+    override fun getFilter() = listFilter.takeIf { it == null }?.apply { ListFilter() } ?: ListFilter()
 
-    override fun getFilter(): Filter {
-        if (listFilter == null) {
-            listFilter = ListFilter()
-        }
-        return listFilter!!
-    }
 
     private inner class ListFilter : Filter() {
         override fun performFiltering(constraint: CharSequence?): FilterResults {
             val result = FilterResults()
 
-            if (constraint == null || constraint.isEmpty()) {
+            if (constraint.isNullOrEmpty()) {
                 result.values = itemList
                 result.count = itemList.size
             } else {
                 val itemList2 = ArrayList<BusNoList>()
-                for (item in itemList) {
-                    if (item.busNo.toUpperCase().contains(constraint.toString().toUpperCase())) {
-                        itemList2.add(item)
-                    }
-                }
+                itemList.forEach { if (constraint.toString().toUpperCase() in it.busNo.toUpperCase()) itemList2.add(it) }
                 result.values = itemList2
                 result.count = itemList2.size
             }
@@ -181,12 +138,7 @@ class NumberListAdapter : BaseAdapter(), Filterable {
 
         override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
             filteredItemList = results?.values as ArrayList<BusNoList>
-
-            if (results.count > 0) {
-                notifyDataSetChanged()
-            } else {
-                notifyDataSetInvalidated()
-            }
+            if (results.count > 0) notifyDataSetChanged() else notifyDataSetInvalidated()
         }
     }
 }
@@ -197,45 +149,35 @@ class PlatformArvlInfoListAdapter : BaseAdapter() {
     private lateinit var time: TextView
     private lateinit var type: TextView
 
-    override fun getCount(): Int {
-        return itemList.size
-    }
+    override fun getCount() = itemList.size
 
-    override fun getItem(position: Int): Any {
-        return itemList[position]
-    }
+    override fun getItem(position: Int) = itemList[position]
 
-    override fun getItemId(position: Int): Long {
-        return position.toLong()
-    }
+    override fun getItemId(position: Int) = position.toLong()
+
+    fun addItem(number: String, time: String, type: String) =
+        PlatformArvlInfoList2(number, time, type).run(itemList::add)
+
+    fun clear() = itemList.clear()
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         var view = convertView
+        val arrtime = itemList[position].time.toInt()
         val context = parent?.context
 
-        if (view == null) {
-            view = context?.layoutInflater?.inflate(R.layout.list_platform_infomation, parent, false)
-        }
+        if (view == null) view = context?.layoutInflater?.inflate(R.layout.list_platform_infomation, parent, false)
 
         view?.let {
-            with(it) {
-                number = find(R.id.PI_listBusNum)
-                time = find(R.id.PI_listArvlTime)
-                type = find(R.id.PI_listBusType)
-            }
+            number = it.find(R.id.PI_listBusNum)
+            time = it.find(R.id.PI_listArvlTime)
+            type = it.find(R.id.PI_listBusType)
         }
 
         number.text = itemList[position].number
 
-        val arrtime = (itemList[position].time).toInt()
-
         time.apply {
             text = "${arrtime}분"
-            if (arrtime <= 5) {
-                setTextColor(Color.RED)
-            } else {
-                setTextColor(Color.BLUE)
-            }
+            takeIf { arrtime <= 5 }?.apply { setTextColor(Color.RED) } ?: setTextColor(Color.BLUE)
         }
 
         type.text = itemList[position].type
@@ -243,12 +185,8 @@ class PlatformArvlInfoListAdapter : BaseAdapter() {
         return view!!
     }
 
-    fun addItem(number: String, time: String, type: String) {
-        val item = PlatformArvlInfoList2(number, time, type)
-        itemList.add(item)
-    }
 
-    fun clear() {
-        itemList.clear()
-    }
 }
+
+//        if (listFilter == null) listFilter = ListFilter()
+//        return listFilter!!

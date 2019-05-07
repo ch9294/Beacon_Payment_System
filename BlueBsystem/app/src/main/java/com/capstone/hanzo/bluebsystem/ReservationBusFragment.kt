@@ -25,6 +25,7 @@ import org.jetbrains.anko.sdk27.coroutines.onItemClick
 import org.jetbrains.anko.support.v4.alert
 import org.jetbrains.anko.support.v4.runOnUiThread
 import org.jetbrains.anko.support.v4.toast
+import org.w3c.dom.Text
 import java.io.IOException
 
 
@@ -43,6 +44,18 @@ class ReservationBusFragment : Fragment(), AnkoLogger {
     private lateinit var RB_stSearch: TextView
     private lateinit var RB_listView: ListView
 
+    // 텍스트뷰 색 설정 함수 1
+    private fun TextView.textAndBG_setColor_1() {
+        setTextColor(Color.parseColor("#FFFFFF"))
+        setBackgroundColor(Color.parseColor("#000E2B"))
+    }
+
+    // 텍스트뷰 색 설정 함수 2
+    private fun TextView.textAndBG_setColor_2() {
+        setTextColor(Color.parseColor("#000E2B"))
+        setBackgroundColor(Color.parseColor("#FFFFFF"))
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -59,131 +72,88 @@ class ReservationBusFragment : Fragment(), AnkoLogger {
         val controller = activity as MenuActivity
 
         // 가상 키보드 정보 불러오기
-        val imm = with(controller) { getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager }
+        val imm = controller.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
 
-        RB_searchST.hint = "노선번호 검색"
-        RB_listView.adapter = controller.busAdapter
-
-        RB_numSearch.run {
-            setTextColor(Color.parseColor("#FFFFFF"))
-            setBackgroundColor(Color.parseColor("#000E2B"))
-            setOnClickListener {
-
-                RB_searchST.run {
-                    setText("")
-                    hint = "노선번호 검색"
-                    setOnKeyListener { v, keyCode, event ->
-                        when (keyCode) {
-                            KeyEvent.KEYCODE_ENTER -> imm.hideSoftInputFromWindow(v.windowToken, 0)
-                            else -> false
-                        }
+        // 리스트를 검색하기 위한 함수
+        fun click(view: TextView) = RB_searchST.apply {
+            text.clear()
+            if (view.id == R.id.RB_numSearch) hint = "노선번호 검색" else hint = "정류장 검색"
+            setOnKeyListener { v, keyCode, event ->
+                if (keyCode == KeyEvent.KEYCODE_ENTER)
+                    imm.hideSoftInputFromWindow(v.windowToken, 0)
+                else false
+            }
+            addTextChangedListener(object : TextWatcher {
+                override fun afterTextChanged(s: Editable?) {
+                    val filterText = s.toString()
+                    if (filterText.isEmpty()) {
+                        RB_listView.clearTextFilter()
+                    } else {
+                        RB_listView.setFilterText(filterText)
                     }
-                    addTextChangedListener(object : TextWatcher {
-                        override fun afterTextChanged(s: Editable?) {
-                            val filterText = s.toString()
-                            if (filterText.isEmpty()) {
-                                RB_listView.clearTextFilter()
-                            } else {
-                                RB_listView.setFilterText(filterText)
-                            }
-                        }
-
-                        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                        }
-
-                        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                        }
-                    })
                 }
 
-                RB_numSearch.run {
-                    setTextColor(Color.parseColor("#FFFFFF"))
-                    setBackgroundColor(Color.parseColor("#000E2B"))
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 }
 
-                RB_stSearch.run {
-                    setTextColor(Color.parseColor("#000E2B"))
-                    setBackgroundColor(Color.parseColor("#FFFFFF"))
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
                 }
+            })
+        }
 
-                RB_listView.run {
+        // 검색한 리스트의 아이템을 클릭했을 경우
+        fun adapterViewItemClick(view: TextView) = RB_listView.apply {
+            when (view.id == R.id.RB_numSearch) {
+                true -> {
                     adapter = controller.busAdapter
-                    onItemClickListener = object : AdapterView.OnItemClickListener {
-                        override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                            val v = parent?.getItemAtPosition(position) as BusNoList
-                        }
+                    onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+                        parent?.getItemAtPosition(position) as BusNoList
                     }
                 }
-            }
-        }
-
-        RB_stSearch.run {
-            setOnClickListener {
-                RB_searchST.run {
-                    setText("")
-                    hint = "정류장 검색"
-                    setOnKeyListener { v, keyCode, event ->
-                        when (keyCode) {
-                            KeyEvent.KEYCODE_ENTER -> imm.hideSoftInputFromWindow(v.windowToken, 0)
-                            else -> false
-                        }
-                    }
-                    addTextChangedListener(object : TextWatcher {
-                        override fun afterTextChanged(s: Editable?) {
-                            val filterText = s.toString()
-                            if (filterText.isEmpty()) {
-                                RB_listView.clearTextFilter()
-                            } else {
-                                RB_listView.setFilterText(filterText)
-                            }
-                        }
-
-                        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
-                        }
-
-                        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-                        }
-                    })
-                }
-
-                RB_stSearch.run {
-                    setTextColor(Color.parseColor("#FFFFFF"))
-                    setBackgroundColor(Color.parseColor("#000E2B"))
-                }
-
-                RB_numSearch.run {
-                    setTextColor(Color.parseColor("#000E2B"))
-                    setBackgroundColor(Color.parseColor("#FFFFFF"))
-                }
-
-                RB_listView.run {
+                false -> {
                     adapter = controller.platAdapter
-                    onItemClickListener = object : AdapterView.OnItemClickListener {
-                        override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                            val v = parent?.getItemAtPosition(position) as PlatformArvlInfoList
+                    onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+                        (parent?.getItemAtPosition(position) as PlatformArvlInfoList).apply {
+                            controller.apply {
+                                sharedPlatformId = platId
+                                sharedPlatformName = platName
 
-                            with(controller) {
-                                sharedPlatformId = v.platId
-                                sharedPlatformName = v.platName
+                                supportFragmentManager.beginTransaction().apply {
+                                    add(R.id.mainContainer, PlatformInfoFragment())
+                                    addToBackStack(null)
+                                }.commit()
                             }
-
-                            val trans = controller.supportFragmentManager.beginTransaction().apply {
-                                add(R.id.mainContainer, PlatformInfoFragment())
-                                addToBackStack(null)
-                            }.commit()
                         }
                     }
                 }
             }
         }
+
+        click(RB_numSearch)
 
         RB_listView.apply {
+            adapter = controller.busAdapter
             isTextFilterEnabled = true
         }
 
+        RB_numSearch.apply {
+            textAndBG_setColor_1()
+            setOnClickListener {
+                click(this)
+                adapterViewItemClick(this)
+                textAndBG_setColor_1()
+                RB_stSearch.textAndBG_setColor_2()
+            }
+        }
+
+        RB_stSearch.apply {
+            setOnClickListener {
+                click(this)
+                adapterViewItemClick(this)
+                textAndBG_setColor_1()
+                RB_numSearch.textAndBG_setColor_2()
+            }
+        }
         return view
     }
-
 }

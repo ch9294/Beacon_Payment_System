@@ -11,6 +11,9 @@ import com.google.android.gms.common.api.GoogleApiClient
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import okhttp3.FormBody
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -49,20 +52,15 @@ class LoginActivity : AppCompatActivity(), GoogleApiClient.OnConnectionFailedLis
 
         btnLGoogleLogin.setOnClickListener {
             val signIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient)
-            startActivityForResult(
-                signIntent,
-                RC_SIGN_IN
-            )
+            startActivityForResult(signIntent, RC_SIGN_IN)
         }
     }
 
     override fun onStart() {
         super.onStart()
-        val user = FirebaseAuth.getInstance().currentUser
 
-        user?.let {
-            startActivity(intentFor<MenuActivity>())
-        }
+//        TODO :   자동 로그인 일단 보류 (2019.05.01)
+//        mAuth.currentUser?.let { startActivity(intentFor<MenuActivity>()); finish() }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -76,9 +74,7 @@ class LoginActivity : AppCompatActivity(), GoogleApiClient.OnConnectionFailedLis
                         val account = result.signInAccount
                         firebaseAuthWithGoogle(account!!)
                     }
-                    false -> {
-                        toast("로그인 실패").show()
-                    }
+                    false -> { toast("로그인 실패").show() }
                 }
             }
         }
@@ -99,8 +95,7 @@ class LoginActivity : AppCompatActivity(), GoogleApiClient.OnConnectionFailedLis
         }
     }
 
-   inner class LoginThread : Thread() {
-
+    inner class LoginThread : Thread() {
         // 현재 어플리케이션에 로그인 된 사용자 객체
         private val currentUser = FirebaseAuth.getInstance().currentUser
 
@@ -118,3 +113,4 @@ class LoginActivity : AppCompatActivity(), GoogleApiClient.OnConnectionFailedLis
         }
     }
 }
+

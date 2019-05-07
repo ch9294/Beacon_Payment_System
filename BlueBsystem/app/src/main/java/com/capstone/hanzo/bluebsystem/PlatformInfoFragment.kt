@@ -15,6 +15,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import okhttp3.*
@@ -50,27 +52,23 @@ class PlatformInfoFragment : Fragment(), AnkoLogger, SwipeRefreshLayout.OnRefres
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_platform_info2, container, false).apply {
-            PI_ListView = find(R.id.PI_ListView2)
-            PI_listPlatName = find(R.id.PI_listPlatName2)
-            PI_swipe = find(R.id.listSwipe)
-        }
+        val view = inflater
+            .inflate(R.layout.fragment_platform_info2, container, false)
+            .apply {
+                PI_ListView = find(R.id.PI_ListView2)
+                PI_listPlatName = find(R.id.PI_listPlatName2)
+                PI_swipe = find(R.id.listSwipe)
+            }
 
         val ctrl = activity as MenuActivity
         platformInfoListInit()
 
-        PI_swipe.apply {
-            setOnRefreshListener(this@PlatformInfoFragment)
-        }
-        PI_listPlatName.apply {
-            text = ctrl.sharedPlatformName
+        PI_swipe.setOnRefreshListener(this)
+        PI_listPlatName.text = ctrl.sharedPlatformName
+        PI_ListView.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+            parent?.getItemAtPosition(position) as PlatformArvlInfoList2
         }
 
-        PI_ListView.apply {
-            onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
-                val v = parent?.getItemAtPosition(position) as PlatformArvlInfoList2
-            }
-        }
         return view
     }
 
@@ -80,7 +78,6 @@ class PlatformInfoFragment : Fragment(), AnkoLogger, SwipeRefreshLayout.OnRefres
         PI_ListView.run {
             postDelayed({
                 toast("새로고침").show()
-//                PlatFormInfoThread().start()
                 platformInfoListInit()
             }, 500)
             PI_swipe.isRefreshing = false
@@ -88,18 +85,30 @@ class PlatformInfoFragment : Fragment(), AnkoLogger, SwipeRefreshLayout.OnRefres
     }
 
 
-
-    fun platformInfoListInit() = GlobalScope.launch {
-        val request = makeRequest("http://openapi.tago.go.kr/openapi/service/ArvlInfoInqireService/getSttnAcctoArvlPrearngeInfoList?" +
+    fun platformInfoListInit() = CoroutineScope(Dispatchers.IO).launch {
+        val request = makeRequest(
+            "http://openapi.tago.go.kr/openapi/service/ArvlInfoInqireService/getSttnAcctoArvlPrearngeInfoList?" +
                     "ServiceKey=SQYXLo2JYmzB7pvVorqfLma6NF38tdCUkcJ0Pn0pXJC0G4fPu%2F7xt%2Bqpoq%2F1qkiBw1krMnqNMNqxcLs0H3B7%2Bw%3D%3D" +
                     "&cityCode=22" +
                     "&nodeId=${(activity as MenuActivity).sharedPlatformId}" +
-                    "&numOfRows=20")
+                    "&numOfRows=20"
+        )
 
         OkHttpClient().newCall(request).enqueue(PlatformInfoCallback())
     }
 
     inner class PlatformInfoCallback : Callback {
+
+        val ARR_TIME = "arrtime"
+        val ROUTE_NO = "routeno"
+        val VEHICLE_TYPE = "vehicletp"
+        val ITEM = "item"
+
+        private fun getTextContentByTagName(tag: String, node: Element, idx: Int = 0): String {
+            val item = tag.run(node::getElementsByTagName).item(idx) as Element
+            return item.textContent
+        }
+
         override fun onFailure(call: Call, e: IOException) = runOnUiThread { toast("연결 실패").show() }
 
         override fun onResponse(call: Call, response: Response) {
@@ -109,20 +118,19 @@ class PlatformInfoFragment : Fragment(), AnkoLogger, SwipeRefreshLayout.OnRefres
             val doc = builder.parse(stream)
             val root = doc.documentElement
 
-            val itemList = root.getElementsByTagName("item")
+            val itemList = ITEM.run(root::getElementsByTagName)
 
             // 어댑터 내의 내용을 모두 제거한다.(리스트뷰에 새로운 내용을 갱신하기 위해)
             listAdapter.clear()
 
             for (idx in 0 until itemList.length) {
                 val node = itemList.item(idx) as Element
-                val time = (((node.getElementsByTagName("arrtime").item(0) as Element).textContent).toInt() / 60).toString()
-                val busNum = (node.getElementsByTagName("routeno").item(0) as Element).textContent
-                val type = (node.getElementsByTagName("vehicletp").item(0) as Element).textContent
+                val time = getTextContentByTagName(ARR_TIME, node).toInt().div(60).toString()
+                val busNum = getTextContentByTagName(ROUTE_NO, node)
+                val type = getTextContentByTagName(VEHICLE_TYPE, node)
                 listAdapter.addItem(busNum, time, type)
             }
-
-            runOnUiThread { PI_ListView.adapter = listAdapter }
+            CoroutineScope(Dispatchers.Main).launch { PI_ListView.adapter = listAdapter }
         }
     }
 
