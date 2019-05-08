@@ -43,7 +43,7 @@ class UserManagementFragment : Fragment(), AnkoLogger {
 
     companion object {
         const val TAG = "test_beacon"
-        const val TRANS_VALID_TIME = 1800000
+        const val TRANS_VALID_TIME = 180
         const val PRICE_NORMAL = 1250
         const val PRICE_EXPRESS = 1650
     }
@@ -117,9 +117,9 @@ class UserManagementFragment : Fragment(), AnkoLogger {
                     inFlag = false
                     transFlag = false
                     paymentFlag = false
-                    profileBusNum.text = if (this.transFlag) "환승 대기중" else "미탑승"
+                    profileBusNum.text = "미탑승"
                 }
-//                profileBusNum.text = if ((activity as MenuActivity).transFlag) "환승 대기중" else "미탑승"
+                onResume()
                 updateUserInfoLaunch(null)
             } ?: toast("종료할 서비스가 없습니다").show()
         }
@@ -169,17 +169,21 @@ class UserManagementFragment : Fragment(), AnkoLogger {
                         if (getOffCnt == 0) {
                             Log.d(TAG, "하차 처리 되었습니다")
                             inFlag = false
+                            launch(Dispatchers.Main) { profileBusNum.text = "환승 대기중"}
                         }
+
                         /**
                          * 환승 플래그 참 && 탑승 플래그 false 인 경우 (즉, 사용자가 하차 한 후 직접 서비스 종료를 하지 않은 경우)
                          * 환승 가능 시간이 하차 시간부터 30분 이내에만 가능하기 때문에
                          * 30분 이후에는 자동적으로 서비스 종료를 하게 함
                          */
+
                         if (transFlag and inFlag.not()) {
                             when (++getOffCnt == 1) {
                                 true -> {
-                                    getOffTime = SystemClock.currentThreadTimeMillis()
+                                    getOffTime = System.currentTimeMillis()
                                     Log.d(TAG, "하차 시간을 저장합니다. : ${Date(getOffTime)}")
+                                    cnt = 0
                                 }
                                 false -> {
                                     val now = SystemClock.currentThreadTimeMillis()
@@ -287,7 +291,7 @@ class UserManagementFragment : Fragment(), AnkoLogger {
 
             if (complete) {
                 Log.d(TAG, "승차 처리가 완료되었습니다.")
-                sendSignal()
+//                sendSignal()
 
                 launch(Dispatchers.Main) {
                     successAlert.show()
@@ -300,9 +304,7 @@ class UserManagementFragment : Fragment(), AnkoLogger {
             } else {
                 Log.d(TAG, "금액 부족으로 인한 승차 실패")
 
-                launch(Dispatchers.Main) {
-                    failedAlert.show()
-                }
+                launch(Dispatchers.Main) { failedAlert.show() }
                 btnRangeEnd.callOnClick()
                 completeProcess(complete)
             }
@@ -411,6 +413,7 @@ class UserManagementFragment : Fragment(), AnkoLogger {
             runOnUiThread { profileBalT.text = (activity as MenuActivity).sharedUserBalance }
         }
     }
+
 }
 
 
