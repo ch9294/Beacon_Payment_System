@@ -53,7 +53,7 @@ data class PlatformArvlInfoList(val platId: String, val platNo: String, val plat
 }
 
 // 선택한 정류장의 도착정보 리스트
-data class PlatformArvlInfoList2(val number: String, val time: String, val type: String)
+data class PlatformArvlInfoList2(val number: String, val time: String, val type: String, val prevCnt: String)
 
 // 사용자의 정보 리스트
 data class UserInfoList(

@@ -3,10 +3,7 @@ package com.capstone.hanzo.bluebsystem
 import android.graphics.Color
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.Filter
-import android.widget.Filterable
-import android.widget.TextView
+import android.widget.*
 import org.jetbrains.anko.find
 import org.jetbrains.anko.layoutInflater
 
@@ -148,6 +145,8 @@ class PlatformArvlInfoListAdapter : BaseAdapter() {
     private lateinit var number: TextView
     private lateinit var time: TextView
     private lateinit var type: TextView
+    private lateinit var image: ImageView
+    private lateinit var count: TextView
 
     override fun getCount() = itemList.size
 
@@ -155,8 +154,8 @@ class PlatformArvlInfoListAdapter : BaseAdapter() {
 
     override fun getItemId(position: Int) = position.toLong()
 
-    fun addItem(number: String, time: String, type: String) =
-        PlatformArvlInfoList2(number, time, type).run(itemList::add)
+    fun addItem(number: String, time: String, type: String, prevCnt: String) =
+        PlatformArvlInfoList2(number, time, type, prevCnt).run(itemList::add)
 
     fun clear() = itemList.clear()
 
@@ -165,22 +164,43 @@ class PlatformArvlInfoListAdapter : BaseAdapter() {
         val arrtime = itemList[position].time.toInt()
         val context = parent?.context
 
-        if (view == null) view = context?.layoutInflater?.inflate(R.layout.list_platform_infomation, parent, false)
+        if (view == null) view = context?.layoutInflater?.inflate(R.layout.bus_arrive_info, parent, false)
 
         view?.let {
-            number = it.find(R.id.PI_listBusNum)
-            time = it.find(R.id.PI_listArvlTime)
-            type = it.find(R.id.PI_listBusType)
-        }
-
-        number.text = itemList[position].number
-
-        time.apply {
-            text = "${arrtime}분"
-            takeIf { arrtime <= 5 }?.apply { setTextColor(Color.RED) } ?: setTextColor(Color.BLUE)
+            image = it.find(R.id.busImg)
+            number = it.find(R.id.busNum)
+            time = it.find(R.id.arrtime)
+            type = it.find(R.id.type)
+            count = it.find(R.id.prevCount)
         }
 
         type.text = itemList[position].type
+
+        number.text = itemList[position].number
+
+        if (number.text.contains("급행")) {
+            image.setImageResource(R.mipmap.express_bus_image)
+        } else {
+            image.setImageResource(R.mipmap.normal_bus_image)
+        }
+
+        time.apply {
+            text = "${arrtime}분"
+            if (arrtime < 5) setTextColor(Color.RED) else setTextColor(Color.BLUE)
+        }
+
+        count.run {
+            text = itemList[position].prevCnt
+            val cnt = text.toString().toInt()
+
+            if (cnt > 10) {
+                text = "10 정거장 이상 남음"
+            } else if (cnt == 2) {
+                text = "전전"
+            } else if (cnt == 1) {
+                text = "전"
+            }
+        }
 
         return view!!
     }

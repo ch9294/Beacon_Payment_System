@@ -19,7 +19,7 @@
                 android:layout_height="100dp"
                 android:src="@drawable/logo_m"
                 android:layout_margin="10dp"
-                android:layout_centerVertical="true"/>
+                android:layout_centerVertical="true" android:contentDescription="TODO"/>
 
         <LinearLayout
                 android:layout_width="match_parent"
@@ -59,7 +59,6 @@
         <TextView
                 android:id="@+id/profileBalT"
                 android:fontFamily=""
-                android:text="1000"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
@@ -82,18 +81,6 @@
                 android:gravity="center"
                 android:background="#00000000"/>
 
-        <TextView
-                android:layout_width="1dp"
-                android:layout_height="60dp"
-                android:layout_gravity="center"
-                android:background="#afafaf"/>
-
-        <!--<Button-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:layout_weight="3"-->
-                <!--android:text="충 전"-->
-                <!--android:background="#00000000"/>-->
 
     </LinearLayout>
 

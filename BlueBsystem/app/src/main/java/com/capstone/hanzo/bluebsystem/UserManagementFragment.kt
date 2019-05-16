@@ -43,7 +43,8 @@ class UserManagementFragment : Fragment(), AnkoLogger {
 
     companion object {
         const val TAG = "test_beacon"
-        const val TRANS_VALID_TIME = 180
+        //        const val TRANS_VALID_TIME = 180000
+        const val TRANS_VALID_TIME = 60000
         const val PRICE_NORMAL = 1250
         const val PRICE_EXPRESS = 1650
     }
@@ -94,7 +95,7 @@ class UserManagementFragment : Fragment(), AnkoLogger {
 
         btnRangeStart.setOnClickListener {
             Log.d(TAG, "btnRangeStart 이벤트 발생")
-
+            toast("서비스 시작합니다.").show()
             if ((activity as MenuActivity).sharedUserBalance.toInt() < PRICE_NORMAL) {
                 toast("잔액이 부족합니다.").show()
             } else {
@@ -109,6 +110,7 @@ class UserManagementFragment : Fragment(), AnkoLogger {
 
         btnRangeEnd.setOnClickListener {
             Log.d(TAG, "btnRangeEnd 이벤트 발생")
+            toast("서비스 시작합니다.").show()
             stop = true
             rangingJob?.let {
                 (activity as MenuActivity).run {
@@ -164,12 +166,20 @@ class UserManagementFragment : Fragment(), AnkoLogger {
                 addRangeNotifier { beacons, region ->
                     Log.d(TAG, "addRangeNotifier() 호출")
                     // 비콘 신호가 10초 동안 감지 되지 않은 경우 하차 루틴을 시작한다.
-                    if (cnt == 15) {
+                    if (cnt == 10) {
                         // 첫 10초 이후에는 단순 하차 처리
-                        if (getOffCnt == 0) {
+                        if ((getOffCnt == 0) and inFlag) {
                             Log.d(TAG, "하차 처리 되었습니다")
                             inFlag = false
-                            launch(Dispatchers.Main) { profileBusNum.text = "환승 대기중"}
+
+                            CoroutineScope(Dispatchers.Main).launch {
+                                AlertDialog.Builder(activity as MenuActivity).apply {
+                                    setTitle("하차")
+                                    setMessage("${sharedLastBusNumber}번 : 하차하였습니다.")
+                                    setPositiveButton("확인", null)
+                                }.show()
+                                profileBusNum.text = "환승 대기중"
+                            }
                         }
 
                         /**
@@ -186,7 +196,7 @@ class UserManagementFragment : Fragment(), AnkoLogger {
                                     cnt = 0
                                 }
                                 false -> {
-                                    val now = SystemClock.currentThreadTimeMillis()
+                                    val now = System.currentTimeMillis()
                                     val timeGap = now - getOffTime
 
                                     when (timeGap <= TRANS_VALID_TIME) {
@@ -203,6 +213,16 @@ class UserManagementFragment : Fragment(), AnkoLogger {
                                             stop = true
                                             getOffCnt = 0
                                             Log.d(TAG, "비콘 감지가 종료됩니다")
+                                            CoroutineScope(Dispatchers.Main).launch {
+                                                AlertDialog.Builder(activity as MenuActivity).apply {
+                                                    setTitle("시간 초과")
+                                                    setMessage(
+                                                        "환승 가능한 시간을 초과하였습니다.\n" +
+                                                                "서비스를 종료합니다."
+                                                    )
+                                                    setPositiveButton("확인", null)
+                                                }.show()
+                                            }
                                         }
                                     }
                                 }
@@ -291,7 +311,7 @@ class UserManagementFragment : Fragment(), AnkoLogger {
 
             if (complete) {
                 Log.d(TAG, "승차 처리가 완료되었습니다.")
-//                sendSignal()
+                sendSignal()
 
                 launch(Dispatchers.Main) {
                     successAlert.show()

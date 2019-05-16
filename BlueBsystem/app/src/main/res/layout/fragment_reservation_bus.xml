@@ -89,10 +89,11 @@
         android:layout_alignParentBottom="true">
 
         <ListView
-            android:id="@+id/RB_listView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="5dp"/>
+                android:id="@+id/RB_listView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp" android:layout_alignBottom="@+id/layout_list"
+                android:layout_alignEnd="@+id/layout_list"/>
     </LinearLayout>
 
 </android.support.percent.PercentRelativeLayout>

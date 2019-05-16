@@ -51,7 +51,8 @@
                     android:id="@+id/PI_ListView2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="5dp"/>
+                    android:layout_margin="5dp"
+            />
         </android.support.v4.widget.SwipeRefreshLayout>
 
     </LinearLayout>

@@ -45,6 +45,7 @@
             app:layout_marginTopPercent="20%"
             app:layout_marginLeftPercent="2%"
             app:layout_marginRightPercent="2%"
+            android:background="@color/edit"
             android:hint="충전금액(원)"
             android:paddingLeft="20dp" android:id="@+id/editExpense" android:inputType="number"/>
 

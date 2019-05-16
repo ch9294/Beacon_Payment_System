@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#000E2B </color>         //hj 상태바 색깔
     <color name="colorAccent">#D81B60</color>
 
+    <color name="edit">#CBD0F3</color>
     <!--hj-->
     <color name="select">#ccf1fc</color>                    //하단메뉴 선택
     <color name="bfselect">#013B63</color>                  //하단메뉴 선택 전

@@ -65,8 +65,12 @@ class PlatformInfoFragment : Fragment(), AnkoLogger, SwipeRefreshLayout.OnRefres
 
         PI_swipe.setOnRefreshListener(this)
         PI_listPlatName.text = ctrl.sharedPlatformName
-        PI_ListView.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
-            parent?.getItemAtPosition(position) as PlatformArvlInfoList2
+
+        PI_ListView.run {
+            onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+                parent?.getItemAtPosition(position) as PlatformArvlInfoList2
+            }
+            divider = null
         }
 
         return view
@@ -99,6 +103,7 @@ class PlatformInfoFragment : Fragment(), AnkoLogger, SwipeRefreshLayout.OnRefres
 
     inner class PlatformInfoCallback : Callback {
 
+        val PREV_CNT = "arrprevstationcnt"
         val ARR_TIME = "arrtime"
         val ROUTE_NO = "routeno"
         val VEHICLE_TYPE = "vehicletp"
@@ -128,7 +133,8 @@ class PlatformInfoFragment : Fragment(), AnkoLogger, SwipeRefreshLayout.OnRefres
                 val time = getTextContentByTagName(ARR_TIME, node).toInt().div(60).toString()
                 val busNum = getTextContentByTagName(ROUTE_NO, node)
                 val type = getTextContentByTagName(VEHICLE_TYPE, node)
-                listAdapter.addItem(busNum, time, type)
+                val prevCnt = getTextContentByTagName(PREV_CNT, node)
+                listAdapter.addItem(busNum, time, type, prevCnt)
             }
             CoroutineScope(Dispatchers.Main).launch { PI_ListView.adapter = listAdapter }
         }
