@@ -164,14 +164,14 @@ class PlatformArvlInfoListAdapter : BaseAdapter() {
         val arrtime = itemList[position].time.toInt()
         val context = parent?.context
 
-        if (view == null) view = context?.layoutInflater?.inflate(R.layout.bus_arrive_info, parent, false)
+        if (view == null) view = context?.layoutInflater?.inflate(R.layout.list_platform_information, parent, false)
 
         view?.let {
-            image = it.find(R.id.busImg)
-            number = it.find(R.id.busNum)
-            time = it.find(R.id.arrtime)
+            image = it.find(R.id.imageView2)
+            number = it.find(R.id.number)
+            time = it.find(R.id.time)
             type = it.find(R.id.type)
-            count = it.find(R.id.prevCount)
+            count = it.find(R.id.count)
         }
 
         type.text = itemList[position].type
@@ -190,8 +190,8 @@ class PlatformArvlInfoListAdapter : BaseAdapter() {
         }
 
         count.run {
-            text = itemList[position].prevCnt
-            val cnt = text.toString().toInt()
+            text = "${itemList[position].prevCnt} 정거장"
+            val cnt = itemList[position].prevCnt.toInt()
 
             if (cnt > 10) {
                 text = "10 정거장 이상 남음"

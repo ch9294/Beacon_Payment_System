@@ -19,7 +19,7 @@
                 android:layout_height="100dp"
                 android:src="@drawable/logo_m"
                 android:layout_margin="10dp"
-                android:layout_centerVertical="true" android:contentDescription="TODO"/>
+                android:layout_centerVertical="true"/>
 
         <LinearLayout
                 android:layout_width="match_parent"

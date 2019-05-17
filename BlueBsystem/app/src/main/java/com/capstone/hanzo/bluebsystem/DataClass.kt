@@ -3,14 +3,10 @@ package com.capstone.hanzo.bluebsystem
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.Ignore
-import android.arch.persistence.room.PrimaryKey
-import android.os.Parcel
-import android.os.Parcelable
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import okhttp3.Request
 import okhttp3.Response
-import java.net.URL
 
 // Okhttp Request 객체 만들기
 fun makeRequest(url: String) = Request.Builder().url(url).build()

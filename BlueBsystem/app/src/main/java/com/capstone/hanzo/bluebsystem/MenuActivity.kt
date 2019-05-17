@@ -16,6 +16,7 @@ import org.jetbrains.anko.longToast
 // TODO : 안드로이드 버전 문제로 인해 http,https 모두 지원하도록 해야함 (2019.05.16)
 
 class MenuActivity : AppCompatActivity(), AnkoLogger {
+
     companion object {
         const val BEACON_LAYOUT = "m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24,d:25-25"
         const val BOOTPAY_ID = "5c6e1824b6d49c7cbc505f9c"
@@ -51,7 +52,6 @@ class MenuActivity : AppCompatActivity(), AnkoLogger {
         beaconManager = BeaconManager.getInstanceForApplication(this).apply {
             BEACON_LAYOUT.run(BeaconParser()::setBeaconLayout).run(beaconParsers::add)
         }
-
 
         // 진동 서비스 객체 받아오기
         vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
