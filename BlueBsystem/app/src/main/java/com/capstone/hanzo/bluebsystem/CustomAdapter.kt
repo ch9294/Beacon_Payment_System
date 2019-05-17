@@ -116,7 +116,6 @@ class NumberListAdapter : BaseAdapter(), Filterable {
 
     override fun getFilter() = listFilter.takeIf { it == null }?.apply { ListFilter() } ?: ListFilter()
 
-
     private inner class ListFilter : Filter() {
         override fun performFiltering(constraint: CharSequence?): FilterResults {
             val result = FilterResults()
@@ -210,3 +209,33 @@ class PlatformArvlInfoListAdapter : BaseAdapter() {
 
 //        if (listFilter == null) listFilter = ListFilter()
 //        return listFilter!!
+
+class RouteInfoAdapter : BaseAdapter() {
+    private val itemList = ArrayList<RouteInfoList>()
+    private var nodeName : TextView? = null
+
+    fun addItem(id: String, number: String) {
+        itemList.add(RouteInfoList(id, number))
+    }
+
+    fun clear() = itemList.clear()
+
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+        var view = convertView
+        val context = parent?.context
+
+        if (view == null) view = context?.layoutInflater?.inflate(R.layout.item_bus_route, parent, false)
+
+        nodeName = view?.find(R.id.itemPlatName)
+
+        nodeName?.text = itemList[position].name
+
+        return view!!
+    }
+
+    override fun getItem(position: Int) = itemList[position]
+
+    override fun getItemId(position: Int) = position.toLong()
+
+    override fun getCount(): Int = itemList.size
+}

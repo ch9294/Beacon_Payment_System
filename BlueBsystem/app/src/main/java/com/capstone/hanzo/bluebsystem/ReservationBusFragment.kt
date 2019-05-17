@@ -6,16 +6,15 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.KeyEvent
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import org.jetbrains.anko.*
 import android.content.Context.INPUT_METHOD_SERVICE
 import android.content.DialogInterface
 import android.support.v7.app.AlertDialog
+import android.util.Log
+import android.view.*
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
+import com.capstone.hanzo.bluebsystem.dialog.RouteDialog
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import kotlinx.coroutines.launch
@@ -106,17 +105,29 @@ class ReservationBusFragment : Fragment(), AnkoLogger {
             when (view.id == R.id.RB_numSearch) {
                 true -> {
                     adapter = controller.busAdapter
-                    onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
-                        parent?.getItemAtPosition(position) as BusNoList
+                    onItemClickListener = AdapterView.OnItemClickListener { parent, _, position, _ ->
+                        (parent?.getItemAtPosition(position) as BusNoList).run {
+                            Log.d("itemClick","$busId , $busNo")
+                            val dm = context.resources.displayMetrics
+                            val dialog = RouteDialog(activity as MenuActivity, busNo, busId)
+                            val wm = dialog.window?.attributes
+
+                            wm?.copyFrom(dialog.window?.attributes)
+                            wm?.width = dm.widthPixels / 4
+                            wm?.height = dm.heightPixels / 4
+
+                            dialog.show()
+                        }
                     }
                 }
                 false -> {
                     adapter = controller.platAdapter
-                    onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+                    onItemClickListener = AdapterView.OnItemClickListener { parent, _, position, _ ->
                         (parent?.getItemAtPosition(position) as PlatformArvlInfoList).apply {
                             controller.apply {
                                 sharedPlatformId = platId
                                 sharedPlatformName = platName
+                                Log.d("itemClick","$platId , $platName")
 
                                 supportFragmentManager.beginTransaction().apply {
                                     add(R.id.mainContainer, PlatformInfoFragment())
@@ -131,7 +142,7 @@ class ReservationBusFragment : Fragment(), AnkoLogger {
 
         click(RB_numSearch)
 
-        RB_listView.apply {
+        RB_listView.run {
             adapter = controller.busAdapter
             isTextFilterEnabled = true
         }

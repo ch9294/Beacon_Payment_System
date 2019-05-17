@@ -2,8 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0e4d481f-d1ad-48a5-a20b-3e5d810ad3b7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../BlueBsystem/app/src/main/java/com/capstone/hanzo/bluebsystem/UserManagementFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BlueBsystem/app/src/main/java/com/capstone/hanzo/bluebsystem/UserManagementFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BlueBsystem/app/src/main/res/layout/fragment_user_management.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BlueBsystem/app/src/main/res/layout/fragment_user_management.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BlueBsystem/app/src/main/btn_floating-web.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BlueBsystem/app/src/main/btn_floating2-web.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BlueBsystem/app/src/main/java/com/capstone/hanzo/bluebsystem/dialog/RouteDialog.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BlueBsystem/app/src/main/res/layout/item_bus_route.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BlueBsystem/app/src/main/res/layout/list_bus_route_info.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BlueBsystem/app/src/main/res/mipmap-hdpi/btn_floating2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BlueBsystem/app/src/main/res/mipmap-mdpi/btn_floating2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BlueBsystem/app/src/main/res/mipmap-xhdpi/btn_floating2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BlueBsystem/app/src/main/res/mipmap-xxhdpi/btn_floating2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BlueBsystem/app/src/main/res/mipmap-xxxhdpi/btn_floating2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlueBsystem/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../BlueBsystem/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlueBsystem/app/src/main/java/com/capstone/hanzo/bluebsystem/CustomAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BlueBsystem/app/src/main/java/com/capstone/hanzo/bluebsystem/CustomAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlueBsystem/app/src/main/java/com/capstone/hanzo/bluebsystem/DataClass.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BlueBsystem/app/src/main/java/com/capstone/hanzo/bluebsystem/DataClass.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlueBsystem/app/src/main/java/com/capstone/hanzo/bluebsystem/ReservationBusFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BlueBsystem/app/src/main/java/com/capstone/hanzo/bluebsystem/ReservationBusFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BlueBsystem/app/src/main/res/layout/bus_arrive_info.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -11,6 +24,11 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution>
+      <executable />
+    </execution>
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -76,7 +94,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/982ce68c-079f-40f7-8560-f84c07c6eaa3/console.sql">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="176">
@@ -86,10 +104,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/busInfoSearch.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="98">
+              <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="das://982ce68c-079f-40f7-8560-f84c07c6eaa3/schema/SYSTEM/table/BusInfoTBL">
           <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true">
+            <state projectRestartId="93ad217a-91f5-4690-afdf-fabb782ed4dc">
+              <filtering>
                 <filter text="" />
               </filtering>
             </state>
@@ -146,6 +173,7 @@
         <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
         <option value="$PROJECT_DIR$/userBookingStateRenewal.php" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/982ce68c-079f-40f7-8560-f84c07c6eaa3/console.sql" />
+        <option value="$PROJECT_DIR$/busRouteInfoSearch.php" />
       </list>
     </option>
   </component>
@@ -164,6 +192,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -175,7 +204,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -187,7 +215,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
-    <property name="database.console.LAST_STATE" value="true" />
+    <property name="database.console.LAST_STATE" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -231,11 +259,12 @@
       <workItem from="1557283300480" duration="665000" />
       <workItem from="1557285982862" duration="633000" />
       <workItem from="1557301943454" duration="24000" />
+      <workItem from="1558073227111" duration="845000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15802000" />
+    <option name="totallyTimeSpent" value="16647000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -243,7 +272,7 @@
     <layout>
       <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="1" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="2" weight="0.24964234" />
+      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.24964234" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -256,7 +285,7 @@
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Terminal" order="10" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Database Console" order="12" visible="true" weight="0.32891566" />
+      <window_info anchor="bottom" id="Database Console" order="12" weight="0.32891566" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -281,7 +310,7 @@
     <entry file="das://982ce68c-079f-40f7-8560-f84c07c6eaa3/schema/SYSTEM/table/GoogleUserInfoTBL">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
-          <filtering enabled="true">
+          <filtering>
             <filter text="" />
           </filtering>
         </state>
@@ -298,15 +327,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="594">
           <caret line="32" selection-start-line="32" selection-end-line="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://982ce68c-079f-40f7-8560-f84c07c6eaa3/schema/SYSTEM/table/BusInfoTBL">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true">
-            <filter text="" />
-          </filtering>
         </state>
       </provider>
     </entry>
@@ -338,6 +358,32 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="8" column="76" selection-start-line="8" selection-start-column="76" selection-end-line="8" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/busRouteInfoSearch.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="871">
+          <caret line="50" column="1" selection-start-line="50" selection-start-column="1" selection-end-line="50" selection-end-column="1" />
+          <folding>
+            <element signature="e#8#68#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/busInfoSearch.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="98">
+          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://982ce68c-079f-40f7-8560-f84c07c6eaa3/schema/SYSTEM/table/BusInfoTBL">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="93ad217a-91f5-4690-afdf-fabb782ed4dc">
+          <filtering>
+            <filter text="" />
+          </filtering>
         </state>
       </provider>
     </entry>

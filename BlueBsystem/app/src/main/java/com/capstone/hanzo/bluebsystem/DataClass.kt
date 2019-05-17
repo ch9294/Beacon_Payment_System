@@ -67,3 +67,6 @@ data class UserInfoList(
         }
     }
 }
+
+
+data class RouteInfoList(val id: String, val name: String)
