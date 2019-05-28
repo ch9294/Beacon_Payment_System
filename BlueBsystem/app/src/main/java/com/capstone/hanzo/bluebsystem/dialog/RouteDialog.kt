@@ -3,17 +3,11 @@ package com.capstone.hanzo.bluebsystem.dialog
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
-import android.support.constraint.solver.widgets.WidgetContainer
-import android.util.Log
-import android.view.View
 import android.view.Window
 import android.view.WindowManager
-import com.capstone.hanzo.bluebsystem.MenuActivity
 import com.capstone.hanzo.bluebsystem.R
 import com.capstone.hanzo.bluebsystem.RouteInfoAdapter
-import com.capstone.hanzo.bluebsystem.RouteInfoList
 import kotlinx.android.synthetic.main.list_bus_route_info.*
-import kotlinx.android.synthetic.main.list_platform_information.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -26,31 +20,24 @@ import javax.xml.parsers.DocumentBuilderFactory
 
 class RouteDialog(context: Context, val number: String, val id: String) : Dialog(context) {
 
-    private var sorting: Boolean = false
     private val listAdapter = RouteInfoAdapter()
-    private lateinit var lp: WindowManager.LayoutParams
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
-
         setContentView(R.layout.list_bus_route_info)
-
+        routeInfoInit()
+        val dm = context.resources.displayMetrics
 
         window?.attributes = WindowManager.LayoutParams().apply {
             copyFrom(this@RouteDialog.window?.attributes)
-            width = 700
-            height = 1000
+            width = dm.widthPixels / 2 + 200
+            height = dm.heightPixels / 2 + 300
         }
 
-        routeInfoInit()
-        title.text = "$number"
-
+        dialogTitleBus.text = "${number}"
     }
 
     private fun routeInfoInit() = CoroutineScope(Dispatchers.IO).launch {
-        Log.d("route", "버스 아이디 : $id, 문자열 갯수 : ${id.length}")
-
         val client = OkHttpClient()
         val address =
             "http://openapi.tago.go.kr/openapi/service/BusRouteInfoInqireService/getRouteAcctoThrghSttnList?" +
@@ -78,7 +65,6 @@ class RouteDialog(context: Context, val number: String, val id: String) : Dialog
 
         override fun onResponse(call: Call, response: Response) {
 
-            Log.d("route", "인터넷 연결 성공")
             val stream = response.body()?.byteStream()
             val factory = DocumentBuilderFactory.newInstance()
             val builder = factory.newDocumentBuilder()
@@ -86,7 +72,6 @@ class RouteDialog(context: Context, val number: String, val id: String) : Dialog
             val root = doc.documentElement
 
             val itemList = root.getElementsByTagName("item")
-            Log.d("route", "item 개수 -> ${itemList.length}")
 
             listAdapter.clear()
 
@@ -99,11 +84,7 @@ class RouteDialog(context: Context, val number: String, val id: String) : Dialog
             }
 
 
-            CoroutineScope(Dispatchers.Main).launch {
-                Log.d("route", "어댑터 연결 , 정류장 개수 -> ${listAdapter.count}")
-                routeList.adapter = listAdapter
-
-            }
+            CoroutineScope(Dispatchers.Main).launch { dialogListBus.adapter = listAdapter }
         }
 
     }

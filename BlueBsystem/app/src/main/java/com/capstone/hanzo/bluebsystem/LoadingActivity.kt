@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.Window
+import android.widget.ImageView
 import com.capstone.hanzo.bluebsystem.room.InfoDB
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -19,12 +20,14 @@ import java.io.IOException
 class LoadingActivity : AppCompatActivity(), AnkoLogger {
 
     private lateinit var database: InfoDB
+    private lateinit var logo:ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.activity_loading)
 
+//        logo = findViewById(R.id.)
         database = InfoDB.getInstance(this)!!
         loading()
     }

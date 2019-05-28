@@ -3,23 +3,20 @@
                                              xmlns:app="http://schemas.android.com/apk/res-auto"
                                              xmlns:tools="http://schemas.android.com/tools"
                                              android:layout_width="match_parent"
-                                             android:layout_height="match_parent" android:id="@+id/constraintLayout">
-    <ImageView
-            android:layout_width="140dp"
-            android:layout_height="140dp" app:srcCompat="@mipmap/normal_bus_image"
-            android:id="@+id/imageView2" android:layout_marginTop="16dp" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
-            android:layout_marginBottom="16dp" app:layout_constraintBottom_toTopOf="@+id/guideline2"/>
+                                             android:layout_height="match_parent"
+                                             android:id="@+id/constraintLayout"
+                                             >
     <android.support.constraint.ConstraintLayout
             android:background="@drawable/p_layout_window"
             android:orientation="vertical"
             android:layout_width="0dp"
-            android:layout_height="0dp" android:layout_marginTop="32dp"
+            android:layout_height="0dp" android:layout_marginTop="16dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/imageView2" android:layout_marginBottom="32dp"
+            android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toTopOf="@+id/guideline2" android:layout_marginEnd="16dp"
-            android:layout_marginStart="8dp" android:id="@+id/busInfolayout">
+            android:id="@+id/busInfolayout" android:layout_marginStart="16dp"
+            app:layout_constraintStart_toStartOf="parent">
 
         <TextView
                 style="@style/PlatformInformationTextView"

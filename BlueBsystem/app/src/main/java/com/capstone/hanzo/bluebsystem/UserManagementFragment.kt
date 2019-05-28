@@ -11,10 +11,12 @@ import android.os.VibrationEffect
 import android.support.v4.app.Fragment
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import com.capstone.hanzo.bluebsystem.dialog.RechargeDialog
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.*
 import okhttp3.*
@@ -55,6 +57,7 @@ class UserManagementFragment : Fragment(), AnkoLogger {
     private lateinit var profileBusNum: TextView
     private lateinit var btnRangeStart: Button
     private lateinit var btnRangeEnd: Button
+    private lateinit var textRecharge: TextView
     private val user = FirebaseAuth.getInstance().currentUser
 
     var rangingJob: Job? = null
@@ -86,6 +89,7 @@ class UserManagementFragment : Fragment(), AnkoLogger {
             profileBusNum = findViewById(R.id.profileBusNum)
             btnRangeEnd = findViewById(R.id.btnRangeEnd)
             btnRangeStart = findViewById(R.id.btnRangeStart)
+            textRecharge = findViewById(R.id.rechargeTextView)
         }
 
         user?.let {
@@ -96,6 +100,8 @@ class UserManagementFragment : Fragment(), AnkoLogger {
         btnRangeStart.setOnClickListener {
             Log.d(TAG, "btnRangeStart 이벤트 발생")
             toast("서비스 시작합니다.").show()
+
+            // 사용자의 잔액이 부족할 경우에는 토스트 메세지를 띄운다.
             if ((activity as MenuActivity).sharedUserBalance.toInt() < PRICE_NORMAL) {
                 toast("잔액이 부족합니다.").show()
             } else {
@@ -104,13 +110,14 @@ class UserManagementFragment : Fragment(), AnkoLogger {
                  *  감지 기능을 종료했다가 다시 켜지지 않는다
                  *  그래서 버튼을 누를 때 마다 객체가 새로 만들어지도록 설정함
                  */
+                // 사용자의 잔액이 충분할 경우에는 비콘 정보를 수신할 객체를 생성하고 실행을한다.
                 (activity as MenuActivity).beaconManager.bind(UserBeaconConsumer())
             }
         }
 
         btnRangeEnd.setOnClickListener {
             Log.d(TAG, "btnRangeEnd 이벤트 발생")
-            toast("서비스 시작합니다.").show()
+            toast("서비스 종료합니다.").show()
             stop = true
             rangingJob?.let {
                 (activity as MenuActivity).run {
@@ -125,12 +132,15 @@ class UserManagementFragment : Fragment(), AnkoLogger {
                 updateUserInfoLaunch(null)
             } ?: toast("종료할 서비스가 없습니다").show()
         }
+
+        textRecharge.setOnClickListener {
+            RechargeDialog(activity as MenuActivity, activity as MenuActivity).show()
+        }
         return view
     }
 
     /**
      * 사용자가 버튼을 누르면 비콘 감지를 시작한다.
-     * TODO : 환승과 하차 기능을 테스트 해야함 (2019.04.10)
      */
 
     // 2019.05.06 getOffCnt를 다른 함수에서도 변경할 수 있게함.(인스턴스 변수로 전환함)
@@ -171,7 +181,6 @@ class UserManagementFragment : Fragment(), AnkoLogger {
                         if ((getOffCnt == 0) and inFlag) {
                             Log.d(TAG, "하차 처리 되었습니다")
                             inFlag = false
-
                             CoroutineScope(Dispatchers.Main).launch {
                                 AlertDialog.Builder(activity as MenuActivity).apply {
                                     setTitle("하차")
@@ -216,10 +225,7 @@ class UserManagementFragment : Fragment(), AnkoLogger {
                                             CoroutineScope(Dispatchers.Main).launch {
                                                 AlertDialog.Builder(activity as MenuActivity).apply {
                                                     setTitle("시간 초과")
-                                                    setMessage(
-                                                        "환승 가능한 시간을 초과하였습니다.\n" +
-                                                                "서비스를 종료합니다."
-                                                    )
+                                                    setMessage("환승 가능한 시간을 초과하였습니다.\n서비스를 종료합니다.")
                                                     setPositiveButton("확인", null)
                                                 }.show()
                                             }
@@ -230,22 +236,28 @@ class UserManagementFragment : Fragment(), AnkoLogger {
                         }
                     }
 
-                    when (beacons.isNotEmpty() && !stop) {
-                        true -> {// 비콘이 감지되는 경우
-                            Log.d(TAG, "비콘이 감지 되었습니다.")
-                            for (b in beacons) {
-                                // 비콘이 감지 되었기 때문에 0으로 리셋
-                                cnt = 0
-                                // 탑승 하지 않았을 경우의 루틴
-                                if (!inFlag) uuidCheck(b)
+                    CoroutineScope(Dispatchers.Default).launch {
+                        when (beacons.isNotEmpty() && !stop) {
+                            true -> {
+                                // 비콘이 감지되는 경우
+                                Log.d(TAG, "비콘이 감지 되었습니다.")
+                                launch {
+                                    for (b in beacons) {
+                                        // 비콘이 감지 되었기 때문에 0으로 리셋
+                                        cnt = 0
+                                        // 탑승 하지 않았을 경우의 루틴
+                                        if (!inFlag) uuidCheck(b)
+                                    }
+                                }
+                            }
+
+                            false -> {// 비콘이 감지되지 않는 경우 계수를 증가 시킴
+                                Log.d(TAG, "비콘이 감지 되지 않습니다.")
+                                cnt++
                             }
                         }
-
-                        false -> {// 비콘이 감지되지 않는 경우 계수를 증가 시킴
-                            Log.d(TAG, "비콘이 감지 되지 않습니다.")
-                            cnt++
-                        }
                     }
+
                 }
             }
         }
@@ -311,7 +323,7 @@ class UserManagementFragment : Fragment(), AnkoLogger {
 
             if (complete) {
                 Log.d(TAG, "승차 처리가 완료되었습니다.")
-                sendSignal()
+//                sendSignal()
 
                 launch(Dispatchers.Main) {
                     successAlert.show()
@@ -391,8 +403,7 @@ class UserManagementFragment : Fragment(), AnkoLogger {
         FormBody.Builder().apply {
             add("user_email", FirebaseAuth.getInstance().currentUser?.email!!)
             add("user_cash", money.toString())
-        }.build()
-            .run(url::post).build()
+        }.build().run(url::post).build()
             .run(OkHttpClient()::newCall)
             .execute()
     }
@@ -403,20 +414,21 @@ class UserManagementFragment : Fragment(), AnkoLogger {
     }
 
     // 버스의 단말기로 신호 송신
-    private fun sendSignal() = CoroutineScope(Dispatchers.IO).launch {
-        val url = Request.Builder().url("http://192.168.43.190/teest.php")
-
-        FormBody.Builder().apply {
-            add("parameter1", "data1")
-            add("parameter2", "data2")
-        }.build()
-            .run(url::post).build()
-            .run(OkHttpClient()::newCall).execute()
-    }
+//    private fun sendSignal() = CoroutineScope(Dispatchers.IO).launch {
+//        val url = Request.Builder().url("http://192.168.43.190/teest.php")
+//
+//        FormBody.Builder().apply {
+//            add("parameter1", "data1")
+//            add("parameter2", "data2")
+//        }.build()
+//            .run(url::post).build()
+//            .run(OkHttpClient()::newCall).execute()
+//    }
 
     private fun balanceRenewalLaunch() = CoroutineScope(Dispatchers.IO).launch {
-        val url = Request.Builder().url(UserInfoList.URL)
+        val url = Request.Builder().url(UserInfoList.URL) // Http Request 객체 생성
 
+        // POST 방식으로 전달, 데이터베이스 조회를 위한 데이터를 추가함
         FormBody.Builder().apply { add("user_email", "${user?.email}") }.build()
             .run(url::post).build()
             .run(OkHttpClient()::newCall)
@@ -425,11 +437,18 @@ class UserManagementFragment : Fragment(), AnkoLogger {
 
     // 잔액 갱신에 대한 응답
     inner class BalanceRenewalCallback : Callback {
+        // 이 경우는 인터넷 연결에 실패할 경우입니다.
         override fun onFailure(call: Call, e: IOException) = runOnUiThread { toast("잔액 갱신에 실패").show() }
 
+        // 인터넷 연결에 성공한 경우
         override fun onResponse(call: Call, response: Response) {
+            // 서버로부터 해당 사용자의 모든 정보를 json으로 받습니다.
             val items = UserInfoList.parseJSON(response)
+
+            // 사용자 잔액을 저장하는 변수에 데이터베이스에서 조회한 잔액을 대입합니다.
             (activity as MenuActivity).sharedUserBalance = items.first().userCash
+
+            // UI를 변경합니다.
             runOnUiThread { profileBalT.text = (activity as MenuActivity).sharedUserBalance }
         }
     }

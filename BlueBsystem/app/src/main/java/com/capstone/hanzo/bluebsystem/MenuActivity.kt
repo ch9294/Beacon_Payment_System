@@ -13,6 +13,7 @@ import kr.co.bootpay.BootpayAnalytics
 import org.altbeacon.beacon.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.longToast
+
 // TODO : 안드로이드 버전 문제로 인해 http,https 모두 지원하도록 해야함 (2019.05.16)
 
 class MenuActivity : AppCompatActivity(), AnkoLogger {

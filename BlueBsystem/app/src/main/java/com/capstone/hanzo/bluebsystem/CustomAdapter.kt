@@ -144,7 +144,6 @@ class PlatformArvlInfoListAdapter : BaseAdapter() {
     private lateinit var number: TextView
     private lateinit var time: TextView
     private lateinit var type: TextView
-    private lateinit var image: ImageView
     private lateinit var count: TextView
 
     override fun getCount() = itemList.size
@@ -166,22 +165,15 @@ class PlatformArvlInfoListAdapter : BaseAdapter() {
         if (view == null) view = context?.layoutInflater?.inflate(R.layout.list_platform_information, parent, false)
 
         view?.let {
-            image = it.find(R.id.imageView2)
             number = it.find(R.id.number)
             time = it.find(R.id.time)
             type = it.find(R.id.type)
             count = it.find(R.id.count)
         }
 
+        itemList.sortBy { it.time.toInt() }
         type.text = itemList[position].type
-
         number.text = itemList[position].number
-
-        if (number.text.contains("급행")) {
-            image.setImageResource(R.mipmap.express_bus_image)
-        } else {
-            image.setImageResource(R.mipmap.normal_bus_image)
-        }
 
         time.apply {
             text = "${arrtime}분"
@@ -203,8 +195,6 @@ class PlatformArvlInfoListAdapter : BaseAdapter() {
 
         return view!!
     }
-
-
 }
 
 //        if (listFilter == null) listFilter = ListFilter()

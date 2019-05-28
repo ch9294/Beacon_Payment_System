@@ -8,24 +8,11 @@ import android.text.Editable
 import android.text.TextWatcher
 import org.jetbrains.anko.*
 import android.content.Context.INPUT_METHOD_SERVICE
-import android.content.DialogInterface
-import android.support.v7.app.AlertDialog
-import android.util.Log
 import android.view.*
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import com.capstone.hanzo.bluebsystem.dialog.RouteDialog
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.fasterxml.jackson.module.kotlin.readValue
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import okhttp3.*
-import org.jetbrains.anko.sdk27.coroutines.onItemClick
-import org.jetbrains.anko.support.v4.alert
-import org.jetbrains.anko.support.v4.runOnUiThread
-import org.jetbrains.anko.support.v4.toast
-import org.w3c.dom.Text
-import java.io.IOException
+import com.capstone.hanzo.bluebsystem.dialog.PlatformInfoDialog
 
 
 // TODO: 앱 설치 직후에는 리스트뷰에 정보가 표시되지 않음(2019.04.04) 해결 중..
@@ -107,16 +94,7 @@ class ReservationBusFragment : Fragment(), AnkoLogger {
                     adapter = controller.busAdapter
                     onItemClickListener = AdapterView.OnItemClickListener { parent, _, position, _ ->
                         (parent?.getItemAtPosition(position) as BusNoList).run {
-                            Log.d("itemClick","$busId , $busNo")
-                            val dm = context.resources.displayMetrics
-                            val dialog = RouteDialog(activity as MenuActivity, busNo, busId)
-                            val wm = dialog.window?.attributes
-
-                            wm?.copyFrom(dialog.window?.attributes)
-                            wm?.width = dm.widthPixels / 4
-                            wm?.height = dm.heightPixels / 4
-
-                            dialog.show()
+                            RouteDialog(activity as MenuActivity, busNo, busId).show()
                         }
                     }
                 }
@@ -125,14 +103,7 @@ class ReservationBusFragment : Fragment(), AnkoLogger {
                     onItemClickListener = AdapterView.OnItemClickListener { parent, _, position, _ ->
                         (parent?.getItemAtPosition(position) as PlatformArvlInfoList).apply {
                             controller.apply {
-                                sharedPlatformId = platId
-                                sharedPlatformName = platName
-                                Log.d("itemClick","$platId , $platName")
-
-                                supportFragmentManager.beginTransaction().apply {
-                                    add(R.id.mainContainer, PlatformInfoFragment())
-                                    addToBackStack(null)
-                                }.commit()
+                                PlatformInfoDialog(activity as MenuActivity, platName, platId).show()
                             }
                         }
                     }
@@ -168,3 +139,11 @@ class ReservationBusFragment : Fragment(), AnkoLogger {
         return view
     }
 }
+
+
+//                                sharedPlatformId = platId
+////                                sharedPlatformName = platName
+//                                supportFragmentManager.beginTransaction().apply {
+//                                    add(R.id.mainContainer, PlatformInfoFragment())
+//                                    addToBackStack(null)
+//                                }.commit()

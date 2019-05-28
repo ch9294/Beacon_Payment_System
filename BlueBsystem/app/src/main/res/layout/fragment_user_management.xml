@@ -61,9 +61,23 @@
                 android:fontFamily=""
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:background="#00000000" android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+        <TextView
+                android:layout_width="1dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:background="#afafaf"/>
+
+        <TextView
+                android:id="@+id/rechargeTextView"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:textColor="#000000"
+                android:text="충전"/>
 
         <TextView
                 android:layout_width="1dp"
@@ -75,7 +89,7 @@
                 android:id="@+id/profileBusNum"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="3"
+                android:layout_weight="2"
                 android:text="미탑승"
                 android:textColor="#000000"
                 android:gravity="center"

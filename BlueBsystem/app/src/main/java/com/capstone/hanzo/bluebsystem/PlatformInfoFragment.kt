@@ -52,10 +52,9 @@ class PlatformInfoFragment : Fragment(), AnkoLogger, SwipeRefreshLayout.OnRefres
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater
-            .inflate(R.layout.fragment_platform_info2, container, false)
+        val view = inflater.inflate(R.layout.fragment_platform_info2, container, false)
             .apply {
-                PI_ListView = this.find(R.id.PI_ListView2)
+                PI_ListView = find(R.id.PI_ListView2)
                 PI_listPlatName = find(R.id.PI_listPlatName2)
                 PI_swipe = find(R.id.listSwipe)
             }
@@ -81,7 +80,7 @@ class PlatformInfoFragment : Fragment(), AnkoLogger, SwipeRefreshLayout.OnRefres
     override fun onRefresh() {
         PI_ListView.run {
             postDelayed({
-                toast("새로고침").show()
+//                toast("새로고침").show()
                 platformInfoListInit()
             }, 500)
             PI_swipe.isRefreshing = false

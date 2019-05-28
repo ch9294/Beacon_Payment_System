@@ -19,6 +19,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.intentFor
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
 class LoginActivity : AppCompatActivity(), GoogleApiClient.OnConnectionFailedListener {
@@ -74,7 +75,9 @@ class LoginActivity : AppCompatActivity(), GoogleApiClient.OnConnectionFailedLis
                         val account = result.signInAccount
                         firebaseAuthWithGoogle(account!!)
                     }
-                    false -> { toast("로그인 실패").show() }
+                    false -> {
+                        toast("로그인 실패").show()
+                    }
                 }
             }
         }
@@ -88,29 +91,48 @@ class LoginActivity : AppCompatActivity(), GoogleApiClient.OnConnectionFailedLis
 
                 }
                 false -> {
-                    LoginThread().start()
-                    startActivity(intentFor<MenuActivity>())
+                    login()
+                    startActivity<MenuActivity>()
+
+//                    LoginThread().start()
+//                    startActivity(intentFor<MenuActivity>())
                 }
             }
         }
     }
 
-    inner class LoginThread : Thread() {
-        // 현재 어플리케이션에 로그인 된 사용자 객체
-        private val currentUser = FirebaseAuth.getInstance().currentUser
+    private fun login() = CoroutineScope(Dispatchers.Default).launch {
 
-        override fun run() {
-            val url = Request.Builder().url("http://13.125.170.17/googleUserInsert.php")
-            val body = FormBody.Builder().apply {
-                add("user_email", currentUser?.email!!)
-                add("user_name", currentUser.displayName!!)
-            }.build()
+        val currentUser = FirebaseAuth.getInstance().currentUser
 
-            // http 요청 객체
-            val request = url.post(body).build()
-            // http 요청
-            OkHttpClient().newCall(request).execute()
-        }
+        val url = Request.Builder().url("http://13.125.170.17/googleUserInsert.php")
+        val body = FormBody.Builder().apply {
+            add("user_email", currentUser?.email!!)
+            add("user_name", currentUser.displayName!!)
+        }.build()
+
+        // http 요청 객체
+        val request = url.post(body).build()
+        // http 요청
+        OkHttpClient().newCall(request).execute()
     }
+
+//    inner class LoginThread : Thread() {
+//        // 현재 어플리케이션에 로그인 된 사용자 객체
+//        private val currentUser = FirebaseAuth.getInstance().currentUser
+//
+//        override fun run() {
+//            val url = Request.Builder().url("http://13.125.170.17/googleUserInsert.php")
+//            val body = FormBody.Builder().apply {
+//                add("user_email", currentUser?.email!!)
+//                add("user_name", currentUser.displayName!!)
+//            }.build()
+//
+//            // http 요청 객체
+//            val request = url.post(body).build()
+//            // http 요청
+//            OkHttpClient().newCall(request).execute()
+//        }
+//    }
 }
 

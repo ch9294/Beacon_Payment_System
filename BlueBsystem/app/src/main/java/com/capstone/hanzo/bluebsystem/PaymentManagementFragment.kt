@@ -51,17 +51,16 @@ class PaymentManagementFragment : Fragment() {
             editExpense = find(R.id.editExpense)
             textExpense = find(R.id.textExpense)
         }
-        editExpense.addTextChangedListener(TextChangedListener())
+        editExpense.addTextChangedListener(EditTextChangedListener())
         btnCharge.setOnClickListener(ChargeListener())
 
         return view
     }
 
-    inner class TextChangedListener : TextWatcher {
+    inner class EditTextChangedListener : TextWatcher {
         private fun <T> check(string: T) {
 
             textExpense.apply {
-
                 if (string.toString().isEmpty()) {
                     textExpense.text = "1,000원 단위로 충전 가능합니다"
                     setTextColor(Color.parseColor("#000E2B"))
